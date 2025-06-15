@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+     compileSdk = 33
     namespace = "com.example.reservision_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion

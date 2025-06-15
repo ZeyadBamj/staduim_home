@@ -24,7 +24,7 @@ class CategoryCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: AppColors.primaryGreen.withOpacity(0.1), // خلفية للأيقونات
+              color: AppColors.primaryGreen.withValues(alpha: 0.1), // خلفية للأيقونات
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.borderColor, width: 2),
             ),

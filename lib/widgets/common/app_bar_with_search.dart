@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_text_styles.dart';
 
 class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onSearchTap;
-  final VoidCallback? onProfileTap;
+  final VoidCallback? onNotification;
   final VoidCallback? onMenuTap;
 
   const AppBarWithSearch({
     super.key,
     required this.title,
     this.onSearchTap,
-    this.onProfileTap,
+    this.onNotification,
     this.onMenuTap,
   });
 
@@ -19,16 +18,20 @@ class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.menu, color: Colors.white),
-        onPressed: onMenuTap,
+      leading: Builder(
+        builder:
+            (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.white),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
       ),
-      title: Text(title, style: AppTextStyles.appBarTitle),
+      title: const Text('ملاعبك'),
+      backgroundColor: Colors.green,
       centerTitle: true,
       actions: [
         IconButton(
-          icon: const Icon(Icons.person, color: Colors.white),
-          onPressed: onProfileTap,
+          icon: const Icon(Icons.notifications_active, color: Colors.white),
+          onPressed: onNotification,
         ),
       ],
     );
