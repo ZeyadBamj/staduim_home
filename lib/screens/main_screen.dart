@@ -27,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(), // my_drawer.dart
       appBar: AppBarWithSearch(
         title: 'ملاعبك',
         onNotification: () {
@@ -34,7 +35,6 @@ class _MainScreenState extends State<MainScreen> {
           print('Notification icon tapped!');
         },
       ),
-      drawer: MyDrawer(), // my_drawer.dart
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Directionality(

@@ -8,18 +8,14 @@ class ReservisionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBarWithSearch(
         title: 'ملاعبك',
-        onMenuTap: () {
-          // Handle menu icon tap
-          print('Menu icon tapped!');
-        },
         onNotification: () {
           // Handle profile icon tap
           print('Notification icon tapped!');
         },
       ),
-      drawer: MyDrawer(),
       body: Center(child: Text('Reservision Page')),
     );
   }
