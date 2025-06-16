@@ -9,7 +9,6 @@ import 'package:reservision_app/screens/reservision_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  // int _selectedIndex = 0;
   final List<Widget> _screens = const [
     MainScreen(),
     CitiesScreen(),
@@ -17,7 +16,6 @@ class HomeScreen extends StatelessWidget {
     ProfileScreen(),
   ];
 
-  // void _onItemTapped(int index) {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationCubit, int>(
