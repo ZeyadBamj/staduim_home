@@ -1,39 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/app_colors.dart';
 
-class AppTextStyles {
-  static const TextStyle appBarTitle = TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-  );
+const kGreetingText = TextStyle(
+  fontSize: 24,
+  fontWeight: FontWeight.bold,
+  color: kTextDark,
+);
 
-  static const TextStyle sectionHeader = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textDark,
-  );
+const kAppBarTitle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  color: kWhiteColor,
+);
 
-  static const TextStyle greetingText = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textDark,
-  );
+const kSectionHeader = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: kTextDark,
+);
 
-  static const TextStyle cardTitle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textDark,
-  );
+const kCardTitle = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  color: kTextDark,
+);
 
-  static const TextStyle cardSubtitle = TextStyle(
-    fontSize: 14,
-    color: AppColors.textLight,
-  );
+const kCardSubtitle = TextStyle(fontSize: 14, color: kGreyColor);
 
-  static const TextStyle categoryLabel = TextStyle(
-    fontSize: 12,
-    color: AppColors.textDark,
-    fontWeight: FontWeight.w500,
-  );
-}
+const kCardLabel = TextStyle(
+  fontSize: 12,
+  color: kTextDark,
+  fontWeight: FontWeight.w500,
+);

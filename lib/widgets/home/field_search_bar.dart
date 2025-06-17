@@ -8,11 +8,11 @@ class FieldSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
+        color: kWhiteColor,
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey,
+            color: kGreyColor,
             spreadRadius: 2,
             blurRadius: 5,
             offset: const Offset(0, 3), // changes position of shadow
@@ -26,12 +26,12 @@ class FieldSearchBar extends StatelessWidget {
         },
         decoration: InputDecoration(
           hintText: 'ابحث عن ملعبك ...',
-          hintStyle: TextStyle(color: AppColors.textLight.withOpacity(0.7)),
-          suffixIcon: const Icon(Icons.search, color: AppColors.textLight),
+          hintStyle: TextStyle(color: kTextLight.withValues(alpha: 0.7)),
+          suffixIcon: const Icon(Icons.search, color: kTextLight),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(
-            vertical: 15.0,
-            horizontal: 10.0,
+            vertical: 15,
+            horizontal: 10,
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservision_app/constants/app_colors.dart';
 import 'package:reservision_app/cubits/navigation_cubit/navigation_cubit.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -12,18 +13,18 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: Colors.green),
+            decoration: BoxDecoration(color: kGreenColor),
             child: Row(
               children: const [
                 CircleAvatar(
                   radius: 30,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.person, size: 30, color: Colors.green),
+                  backgroundColor: kWhiteColor,
+                  child: Icon(Icons.person, size: 30, color: kGreenColor),
                 ),
                 SizedBox(width: 10),
                  Text(
                   'مرحبًا بك!',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(color: kWhiteColor, fontSize: 18),
                 ),
               ],
             ),
@@ -71,8 +72,8 @@ class MyDrawer extends StatelessWidget {
           ),
          const Divider(),
           ListTile(
-            leading: const Icon(Icons.logout, color: Colors.red),
-            title: const Text('تسجيل الخروج', style: TextStyle(color: Colors.red)),
+            leading: const Icon(Icons.logout, color: kRedColor),
+            title: const Text('تسجيل الخروج', style: TextStyle(color: kRedColor)),
             onTap: () {
               // تسجيل الخروج
             },

@@ -29,7 +29,7 @@ class UpcomingBookingCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: AppColors.cardBackground,
+            color: kWhiteColor,
           ),
           child: Row(
             children: [
@@ -46,10 +46,10 @@ class UpcomingBookingCard extends StatelessWidget {
                       (context, error, stackTrace) => Container(
                         width: 150,
                         height: 100,
-                        color: Colors.grey[300],
+                        color: kBorderColor,
                         child: const Icon(
                           Icons.broken_image,
-                          color: Colors.grey,
+                          color: kGreyColor,
                         ),
                       ),
                 ),
@@ -62,7 +62,7 @@ class UpcomingBookingCard extends StatelessWidget {
                     children: [
                       Text(
                         fieldName,
-                        style: AppTextStyles.cardTitle,
+                        style: kCardTitle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -72,18 +72,14 @@ class UpcomingBookingCard extends StatelessWidget {
                           Icon(
                             Icons.calendar_today,
                             size: 16,
-                            color: AppColors.textLight,
+                            color: kTextLight,
                           ),
                           const SizedBox(width: 5),
-                          Text(date, style: AppTextStyles.cardSubtitle),
+                          Text(date, style: kCardSubtitle),
                           const SizedBox(width: 15),
-                          Icon(
-                            Icons.access_time,
-                            size: 16,
-                            color: AppColors.textLight,
-                          ),
+                          Icon(Icons.access_time, size: 16, color: kTextLight),
                           const SizedBox(width: 5),
-                          Text(time, style: AppTextStyles.cardSubtitle),
+                          Text(time, style: kCardSubtitle),
                         ],
                       ),
                     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/cubits/city_cubit/city_cubit.dart';
 import 'package:reservision_app/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:reservision_app/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,21 +14,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NavigationCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => NavigationCubit()),
+        BlocProvider(create: (context) => CityCubit())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: false,
-          primarySwatch: Colors.green,
-          scaffoldBackgroundColor: AppColors.backgroundLight,
+          primarySwatch: kGreenColor,
+          scaffoldBackgroundColor: kBackgroundLight,
           fontFamily: 'Cairo',
           appBarTheme: const AppBarTheme(
-            // backgroundColor: AppColors.primaryGreen,
             elevation: 0,
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: kWhiteColor),
             titleTextStyle: TextStyle(
-              color: Colors.white,
+              color: kWhiteColor,
               fontSize: 20,
               fontWeight: FontWeight.bold,
               fontFamily: 'Cairo',

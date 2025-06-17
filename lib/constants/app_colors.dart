@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-  static const Color primaryGreen = Color(
-    0xFF66BB6A,
-  ); // Example: A shade of blue for primary
-
-  static const Color backgroundLight = Color(0xFFF5F5F5);
-  static const Color textDark = Color(0xFF212121);
-  static const Color textLight = Color(0xFF757575);
-  static const Color cardBackground = Colors.white;
-  static const Color borderColor = Color(0xFFE0E0E0);
-}
+const kPrimaryGreen = Color(0xFF66BB6A);
+const kTextDark = Color(0xFF212121);
+const kTextLight = Color(0xFF757575);
+const kBorderColor = Color(0xFFE0E0E0);
+const kBackgroundLight = Color(0xFFF5F5F5);
+const kWhiteColor = Colors.white;
+const kGreenColor = Colors.green;
+const kGreyColor = Colors.grey;
+const kBlueColor = Colors.blue;
+const kRedColor = Colors.red;
+const kBlackColor = Colors.black;

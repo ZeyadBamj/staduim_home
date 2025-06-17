@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/app_colors.dart';
 import 'package:reservision_app/cubits/auth_cubit/auth_cubit.dart';
 
 class AuthTab extends StatelessWidget {
@@ -28,7 +29,7 @@ class AuthTab extends StatelessWidget {
             color: isSelected ? Colors.blue.shade100 : Colors.transparent,
             border: Border(
               bottom: BorderSide(
-                color: isSelected ? Colors.blue : Colors.grey,
+                color: isSelected ? kBlueColor : kGreyColor,
                 width: 1,
               ),
             ),
@@ -38,7 +39,7 @@ class AuthTab extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                color: isSelected ? Colors.blue : Colors.white,
+                color: isSelected ? kBlueColor : kWhiteColor,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 fontSize: isSelected ? 16 : null,
               ),

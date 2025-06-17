@@ -42,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('مرحباً', style: AppTextStyles.greetingText),
+              Text('مرحباً', style: kGreetingText),
               const SizedBox(height: 20),
 
               const FieldSearchBar(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservision_app/constants/app_colors.dart';
 import 'package:reservision_app/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:reservision_app/screens/cities_screen.dart';
 import 'package:reservision_app/screens/main_screen.dart';
@@ -26,8 +27,8 @@ class HomeScreen extends StatelessWidget {
             body: IndexedStack(index: currentIndex, children: _screens),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: currentIndex,
-              selectedItemColor: Colors.green,
-              unselectedItemColor: Colors.grey,
+              selectedItemColor: kGreenColor,
+              unselectedItemColor: kGreyColor,
               onTap: (index) {
                 context.read<NavigationCubit>().goTo(index);
               },

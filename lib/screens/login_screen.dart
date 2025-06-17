@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/app_colors.dart';
 import 'package:reservision_app/widgets/common/custom_button.dart';
 
 class LoginForm extends StatelessWidget {
@@ -12,7 +13,7 @@ class LoginForm extends StatelessWidget {
         child: Column(
           children: [
             const Text("تسجيل الدخول", style: TextStyle(fontSize: 20)),
-            const Divider(thickness: 2, color: Colors.grey),
+            const Divider(thickness: 2, color: kGreyColor),
             const SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
@@ -38,7 +39,7 @@ class LoginForm extends StatelessWidget {
 
   OutlineInputBorder customOutLineInputBorder() {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white),
+      borderSide: BorderSide(color: kWhiteColor),
       borderRadius: BorderRadius.circular(16),
     );
   }

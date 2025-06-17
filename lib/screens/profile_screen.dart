@@ -31,7 +31,6 @@ class ProfileScreen extends StatelessWidget {
                       currentMode: state,
                       onTap: () => context.read<AuthCubit>().showLogin(),
                     ),
-                    VerticalDivider(thickness: 3, color: Colors.red, width: 10),
                     AuthTab(
                       title: "إنشاء حساب",
                       mode: AuthMode.register,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, required this.onTap});
@@ -12,7 +13,7 @@ class CustomButton extends StatelessWidget {
         height: 60,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xff4CAF50),
+          color: kGreenColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: Colors.blueAccent, // لون الحدود
@@ -22,7 +23,7 @@ class CustomButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: kWhiteColor, fontSize: 20),
           ),
         ),
       ),

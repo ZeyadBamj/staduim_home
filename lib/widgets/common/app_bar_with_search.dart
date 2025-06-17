@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/app_colors.dart';
 
 class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -21,7 +22,7 @@ class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
       leading: Builder(
         builder:
             (context) => IconButton(
-              icon: const Icon(Icons.menu, color: Colors.white),
+              icon: const Icon(Icons.menu, color: kWhiteColor),
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
       ),
@@ -30,7 +31,7 @@ class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications_active, color: Colors.white),
+          icon: const Icon(Icons.notifications_active, color: kWhiteColor),
           onPressed: onNotification,
         ),
       ],
