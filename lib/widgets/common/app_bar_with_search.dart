@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/constants/constants.dart';
 
-class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final VoidCallback? onSearchTap;
-  final VoidCallback? onNotification;
-  final VoidCallback? onMenuTap;
+  final void Function()? onSearchTap;
+  final void Function()? onNotification;
 
-  const AppBarWithSearch({
+  const CustomAppBar({
     super.key,
     required this.title,
     this.onSearchTap,
     this.onNotification,
-    this.onMenuTap,
   });
 
   @override
@@ -26,8 +24,8 @@ class AppBarWithSearch extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
       ),
-      title: const Text('ملاعبك'),
-      backgroundColor: Colors.green,
+      title: Text(title),
+      backgroundColor: kGreenColor,
       centerTitle: true,
       actions: [
         IconButton(

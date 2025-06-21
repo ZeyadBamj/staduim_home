@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
 import 'package:reservision_app/cubits/city_cubit/city_cubit.dart';
-import 'package:reservision_app/cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import 'package:reservision_app/cubits/tab_booking_cubit/tab_booking_cubit.dart';
 import 'package:reservision_app/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservision_app/widgets/tab_booking_widgets/mock_bookings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +19,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => NavigationCubit()),
-        BlocProvider(create: (context) => CityCubit())
+        BlocProvider(create: (context) => BottomNavigationCubit()),
+        BlocProvider(create: (context) => CityCubit()),
+        BlocProvider(create: (context) => BookingCubit()),
+        BlocProvider(create: (context) => TabBookingCubit(mockBookings)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

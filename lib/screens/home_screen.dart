@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/app_colors.dart';
-import 'package:reservision_app/cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:reservision_app/screens/cities_screen.dart';
 import 'package:reservision_app/screens/main_screen.dart';
 import 'package:reservision_app/screens/profile_screen.dart';
@@ -13,13 +13,14 @@ class HomeScreen extends StatelessWidget {
   final List<Widget> _screens = const [
     MainScreen(),
     CitiesScreen(),
-    ReservisionScreen(),
+    ReservationScreen(),
     ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NavigationCubit, int>(
+    final cubit = context.read<BottomNavigationCubit>();
+    return BlocBuilder<BottomNavigationCubit, int>(
       builder: (context, currentIndex) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -30,13 +31,30 @@ class HomeScreen extends StatelessWidget {
               selectedItemColor: kGreenColor,
               unselectedItemColor: kGreyColor,
               onTap: (index) {
-                context.read<NavigationCubit>().goTo(index);
+                cubit.goTo(index);
               },
               type:
                   BottomNavigationBarType
                       .fixed, // لأظهار نصوص الايقونات بدون الضغط عليها
-              backgroundColor: Colors.amber[50],
-              selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+              backgroundColor: Colors.amber[100],
+              selectedLabelStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                shadows: List.filled(
+                  5,
+                  kShadow(
+                    color: kBlackColor,
+                    blurRadius: 3,
+                    offSet: Offset(0, 1),
+                  ),
+                ),
+              ),
+              selectedIconTheme: IconThemeData(
+                shadows: List.filled(
+                  20,
+                  kShadow(color: kBlackColor, blurRadius: 5),
+                ),
+              ),
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined),

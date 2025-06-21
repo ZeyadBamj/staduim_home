@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
-import 'package:reservision_app/models/cities_model.dart';
+import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/models/city_model.dart';
 
-class CitiesList extends StatelessWidget {
-  final List<CitiesModel> playgrounds;
+class CityList extends StatelessWidget {
+  final List<CityModel> cityModel;
 
-  const CitiesList({super.key, required this.playgrounds});
+  const CityList({super.key, required this.cityModel});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: playgrounds.length,
+      itemCount: cityModel.length,
       itemBuilder: (context, index) {
-        final playground = playgrounds[index];
+        final playGround = cityModel[index];
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           elevation: 4,
@@ -23,10 +23,12 @@ class CitiesList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(12),
+                ),
                 child: Image.asset(
-                  playground.image,
-                  height: 180,
+                  playGround.image,
+                  height: MediaQuery.of(context).size.height * 0.23,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -38,8 +40,11 @@ class CitiesList extends StatelessWidget {
                     const Icon(Icons.sports_soccer, color: kGreenColor),
                     const SizedBox(width: 8),
                     Text(
-                      playground.name,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      playGround.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ],
                 ),

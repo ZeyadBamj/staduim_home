@@ -25,7 +25,6 @@ class ProfileScreen extends StatelessWidget {
                 return Row(
                   children: [
                     AuthTab(
-                      // widget/common/auth_tab.dart
                       title: "تسجيل الدخول",
                       mode: AuthMode.login,
                       currentMode: state,
@@ -47,7 +46,10 @@ class ProfileScreen extends StatelessWidget {
           builder: (context, state) {
             return IndexedStack(
               index: state == AuthMode.login ? 0 : 1,
-              children: const [LoginForm(), RegisterForm()],
+              children: const [
+                LoginForm(),
+                RegisterForm(),
+              ], // LoginForm() = 0, RegisterForm() = 1
             );
           },
         ),

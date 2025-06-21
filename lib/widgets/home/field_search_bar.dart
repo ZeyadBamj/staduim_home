@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/constants/constants.dart';
 
 class FieldSearchBar extends StatelessWidget {
   const FieldSearchBar({super.key});
@@ -24,15 +24,12 @@ class FieldSearchBar extends StatelessWidget {
         onTap: () {
           print('Search field tapped!');
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           hintText: 'ابحث عن ملعبك ...',
-          hintStyle: TextStyle(color: kTextLight.withValues(alpha: 0.7)),
-          suffixIcon: const Icon(Icons.search, color: kTextLight),
+          hintStyle: TextStyle(color: kBorderColor),
+          suffixIcon: Icon(Icons.search, color: kTextLight),
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 15,
-            horizontal: 10,
-          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         ),
       ),
     );

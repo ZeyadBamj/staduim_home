@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
-import 'package:reservision_app/constants/app_text_styles.dart';
+import 'package:reservision_app/constants/constants.dart';
 
 class UpcomingBookingCard extends StatelessWidget {
   final String fieldName;
@@ -36,16 +35,17 @@ class UpcomingBookingCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.horizontal(
                   left: Radius.circular(15),
+                  right: Radius.circular(15),
                 ),
                 child: Image.asset(
                   imageUrl,
-                  width: 150,
-                  height: 100,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.2,
                   fit: BoxFit.cover,
                   errorBuilder:
                       (context, error, stackTrace) => Container(
-                        width: 150,
-                        height: 100,
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.2,
                         color: kBorderColor,
                         child: const Icon(
                           Icons.broken_image,
@@ -62,8 +62,12 @@ class UpcomingBookingCard extends StatelessWidget {
                     children: [
                       Text(
                         fieldName,
-                        style: kCardTitle,
-                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: kTextDark,
+                        ),
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 5),
@@ -75,11 +79,17 @@ class UpcomingBookingCard extends StatelessWidget {
                             color: kTextLight,
                           ),
                           const SizedBox(width: 5),
-                          Text(date, style: kCardSubtitle),
+                          Text(
+                            date,
+                            style: TextStyle(fontSize: 14, color: kGreyColor),
+                          ),
                           const SizedBox(width: 15),
                           Icon(Icons.access_time, size: 16, color: kTextLight),
                           const SizedBox(width: 5),
-                          Text(time, style: kCardSubtitle),
+                          Text(
+                            time,
+                            style: TextStyle(fontSize: 14, color: kGreyColor),
+                          ),
                         ],
                       ),
                     ],

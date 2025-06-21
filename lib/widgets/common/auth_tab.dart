@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/auth_cubit/auth_cubit.dart';
 
 class AuthTab extends StatelessWidget {
   final String title;
   final AuthMode mode;
   final AuthMode currentMode;
-  final VoidCallback onTap;
+  final void Function()? onTap;
 
   const AuthTab({
     super.key,
@@ -26,7 +26,7 @@ class AuthTab extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected ? Colors.blue.shade100 : Colors.transparent,
+            color: isSelected ? kBlueColor.shade100 : Colors.transparent,
             border: Border(
               bottom: BorderSide(
                 color: isSelected ? kBlueColor : kGreyColor,

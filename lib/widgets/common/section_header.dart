@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_text_styles.dart';
+import 'package:reservision_app/constants/constants.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
-  final VoidCallback? onPressed;
+  final void Function()? onPressed;
   final String buttonText;
 
   const SectionHeader({
@@ -18,7 +18,14 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: kSectionHeader),
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: kTextDark,
+          ),
+        ),
         if (onPressed != null)
           TextButton(
             onPressed: onPressed,

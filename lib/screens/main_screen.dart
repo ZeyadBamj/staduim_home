@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_text_styles.dart';
+import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/widgets/common/app_bar_with_search.dart';
 import 'package:reservision_app/widgets/common/category_card.dart';
 import 'package:reservision_app/widgets/common/my_drawer.dart';
 import 'package:reservision_app/widgets/common/section_header.dart';
 import 'package:reservision_app/widgets/home/field_search_bar.dart';
-import 'package:reservision_app/widgets/home/upcoming_booking_card.dart';
+import 'package:reservision_app/widgets/home/upcoming_booking_carousel.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,20 +15,26 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   List<Map<String, dynamic>> categories = [
-    {'icon': Icons.sports_soccer, 'label': 'كرة القدم'},
-    {'icon': Icons.sports_basketball, 'label': 'كرة السلة'},
-    {'icon': Icons.sports_volleyball, 'label': 'الكرة الطائرة'},
-    {'icon': Icons.sports_tennis, 'label': 'التنس'},
+    {'icon': Icons.sports_soccer, 'label': 'كرة القدم', 'soon': ''},
+    {
+      'icon': Icons.sports_basketball,
+      'label': 'كرة السلة',
+      'soon': 'قريباً...',
+    },
+    {
+      'icon': Icons.sports_volleyball,
+      'label': 'الكرة الطائرة',
+      'soon': 'قريباً...',
+    },
+    {'icon': Icons.sports_tennis, 'label': 'التنس', 'soon': 'قريباً...'},
   ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(), // my_drawer.dart
-      appBar: AppBarWithSearch(
+      appBar: CustomAppBar(
         title: 'ملاعبك',
         onNotification: () {
           // Handle profile icon tap
@@ -42,49 +48,48 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('مرحباً', style: kGreetingText),
-              const SizedBox(height: 20),
+              Text(
+                'مرحباً',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: kTextDark,
+                ),
+              ),
 
+              const SizedBox(height: 5),
               const FieldSearchBar(),
-              const SizedBox(height: 20),
 
+              const SizedBox(height: 10),
               SectionHeader(
-                title: 'الحجوزات القادمة',
+                title: 'الملاعب',
                 onPressed: () {
                   // Navigate to upcoming bookings list
                   print('View All Upcoming Bookings!');
                 },
               ),
-              const SizedBox(height: 10),
-              UpcomingBookingCard(
-                fieldName: 'ملعب إنماء الجديدة (الكبير)',
-                date: '25 يوليو',
-                time: '10:00 م',
-                imageUrl: 'assets/images/enma_staduim.jpg', // Placeholder image
-                onTap: () {
-                  // Handle booking card tap
-                  print('Booking card tapped!');
-                },
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
 
-              SectionHeader(title: 'الفئات'),
+              UpcomingBookingsCarousel(),
+
               const SizedBox(height: 10),
+              SectionHeader(title: 'الفئات'),
+
               GridView.builder(
                 shrinkWrap: true,
                 physics:
                     const NeverScrollableScrollPhysics(), // Disable scrolling in GridView
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // يساوي المسافة الافقية بين الفئات
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
                   crossAxisSpacing: 10,
-                  // mainAxisSpacing: 10,
-                  childAspectRatio: 1.2, // يساوي المسافة العمودية
+                  childAspectRatio: 1.3, // يساوي المسافة العمودية
                 ),
-                itemCount: 4, // Example categories
+                itemCount: categories.length, // Example categories
                 itemBuilder: (context, index) {
                   return CategoryCard(
                     icon: categories[index]['icon'],
                     label: categories[index]['label'],
+                    soon: categories[index]['soon'],
                     onTap: () {
                       print('${categories[index]['label']} category tapped!');
                     },

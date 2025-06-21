@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/constants/constants.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, required this.onTap});
@@ -10,8 +10,8 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 60,
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.07,
         decoration: BoxDecoration(
           color: kGreenColor,
           borderRadius: BorderRadius.circular(8),
@@ -21,10 +21,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: TextStyle(color: kWhiteColor, fontSize: 20),
-          ),
+          child: Text(text, style: TextStyle(color: kWhiteColor, fontSize: 20)),
         ),
       ),
     );

@@ -1,45 +1,118 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
+# # Miscellaneous
+# *.class
+# *.log
+# *.pyc
+# *.swp
+# .DS_Store
+# .atom/
+# .build/
+# .buildlog/
+# .history
+# .svn/
+# .swiftpm/
+# migrate_working_dir/
+
+# # IntelliJ related
+# *.iml
+# *.ipr
+# *.iws
+# .idea/
+
+# # The .vscode folder contains launch configuration and tasks you configure in
+# # VS Code which you may wish to be included in version control, so this line
+# # is commented out by default.
+# #.vscode/
+
+# # Flutter/Dart/Pub related
+# **/doc/api/
+# **/ios/Flutter/.last_build_id
+# .dart_tool/
+# .flutter-plugins
+# .flutter-plugins-dependencies
+# .pub-cache/
+# .pub/
+# /build/
+
+# # Symbolication related
+# app.*.symbols
+
+# # Obfuscation related
+# app.*.map.json
+
+# # Android Studio will place build artifacts here
+# /android/app/debug
+# /android/app/profile
+# /android/app/release
+
+# ملفات النظام (ويندوز / ماك)
 .DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+Thumbs.db
+desktop.ini
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
+# إعدادات محررات الأكواد
 .idea/
+.vscode/
+*.iml
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# مجلدات البناء المؤقتة من Flutter
+build/
 .dart_tool/
+.packages
 .flutter-plugins
 .flutter-plugins-dependencies
+.melos_tool/
+.generated/
+generated_plugin_registrant.dart
+
+# ملفات الاعتماديات المؤقتة
 .pub-cache/
-.pub/
-/build/
+.flutter-*
 
-# Symbolication related
-app.*.symbols
+# ملفات الاختبار والتقارير
+coverage/
+*.log
 
-# Obfuscation related
-app.*.map.json
+# بيئة المشروع وملفات الحساسة
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.jks
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# ملفات مؤقتة من المحررات
+*.swp
+*.swo
+*.bak
+
+# ملفات Firebase CLI المحلية (تجاهلها)
+.firebase/
+.firebaserc
+
+# ملفات Firebase الأصلية (ضع تعليق إذا أردت رفعها)
+# google-services.json
+# GoogleService-Info.plist
+
+# Android-specific
+android/local.properties
+
+# iOS-specific
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/App.framework
+ios/Pods/
+ios/Runner.xcworkspace/
+Podfile.lock
+
+# macOS
+macos/Flutter/ephemeral/
+
+# Web
+web/.dart_tool/
+
+# Linux
+linux/flutter/ephemeral/
+
+# Windows
+windows/flutter/ephemeral/

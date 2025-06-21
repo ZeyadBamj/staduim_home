@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/app_colors.dart';
+import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/widgets/common/custom_button.dart';
 
 class RegisterForm extends StatelessWidget {
@@ -23,6 +23,7 @@ class RegisterForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              keyboardType: TextInputType.numberWithOptions(), // لجعل لوحة المفاتيح ارقام
               decoration: InputDecoration(
                 labelText: "البريد الإلكتروني أو رقم الجوال",
                 border: customOutLineInputBorder(),

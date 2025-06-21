@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/app_colors.dart';
-import 'package:reservision_app/cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -9,7 +9,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: 200,
+      width: MediaQuery.of(context).size.width * 0.5,
       child: Column(
         children: [
           DrawerHeader(
@@ -19,10 +19,21 @@ class MyDrawer extends StatelessWidget {
                 CircleAvatar(
                   radius: 30,
                   backgroundColor: kWhiteColor,
-                  child: Icon(Icons.person, size: 30, color: kGreenColor),
+                  child: Icon(
+                    Icons.person,
+                    size: 30,
+                    color: kGreenColor,
+                    shadows: [
+                      Shadow(
+                        color: kBlackColor,
+                        blurRadius: 5,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(width: 10),
-                 Text(
+                Text(
                   'مرحبًا بك!',
                   style: TextStyle(color: kWhiteColor, fontSize: 18),
                 ),
@@ -34,7 +45,7 @@ class MyDrawer extends StatelessWidget {
             title: const Text('الرئيسية'),
             onTap: () {
               Navigator.pop(context);
-              context.read<NavigationCubit>().goTo(0);
+              context.read<BottomNavigationCubit>().goTo(0);
               // انتقل للصفحة الرئيسية
             },
           ),
@@ -43,7 +54,6 @@ class MyDrawer extends StatelessWidget {
             title: const Text('اللغة'),
             onTap: () {
               Navigator.pop(context);
-              // انتقل لصفحة الحجوزات
             },
           ),
           ListTile(
@@ -51,7 +61,6 @@ class MyDrawer extends StatelessWidget {
             title: const Text('عن التطبيق'),
             onTap: () {
               Navigator.pop(context);
-              // انتقل لصفحة المدن
             },
           ),
           ListTile(
@@ -59,7 +68,6 @@ class MyDrawer extends StatelessWidget {
             title: const Text('تواصل معنا'),
             onTap: () {
               Navigator.pop(context);
-              // انتقل لصفحة المدن
             },
           ),
           ListTile(
@@ -70,10 +78,21 @@ class MyDrawer extends StatelessWidget {
               // انتقل لصفحة الإعدادات
             },
           ),
-         const Divider(),
+          const Divider(),
           ListTile(
-            leading: const Icon(Icons.logout, color: kRedColor),
-            title: const Text('تسجيل الخروج', style: TextStyle(color: kRedColor)),
+            leading: Icon(
+              Icons.logout,
+              color: kRedColor,
+              shadows: [kShadow(color: kRedColor, blurRadius: 5)],
+            ),
+            title: Text(
+              'تسجيل الخروج',
+              style: TextStyle(
+                color: kRedColor,
+                fontWeight: FontWeight.bold,
+                shadows: [kShadow(color: kRedColor, blurRadius: 3)],
+              ),
+            ),
             onTap: () {
               // تسجيل الخروج
             },
