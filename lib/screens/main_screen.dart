@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/constants/constants.dart';
-import 'package:reservision_app/widgets/common/app_bar_with_search.dart';
+import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import 'package:reservision_app/widgets/common/custom_app_bar.dart';
 import 'package:reservision_app/widgets/common/category_card.dart';
 import 'package:reservision_app/widgets/common/my_drawer.dart';
 import 'package:reservision_app/widgets/common/section_header.dart';
@@ -49,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'مرحباً',
+                '👋مرحباً',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -62,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
 
               const SizedBox(height: 10),
               SectionHeader(
-                title: 'الملاعب',
+                title: '🏟️الملاعب',
                 onPressed: () {
                   // Navigate to upcoming bookings list
                   print('View All Upcoming Bookings!');
@@ -73,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
               UpcomingBookingsCarousel(),
 
               const SizedBox(height: 10),
-              SectionHeader(title: 'الفئات'),
+              SectionHeader(title: '⚽الفئات'),
 
               GridView.builder(
                 shrinkWrap: true,
@@ -91,7 +93,11 @@ class _MainScreenState extends State<MainScreen> {
                     label: categories[index]['label'],
                     soon: categories[index]['soon'],
                     onTap: () {
-                      print('${categories[index]['label']} category tapped!');
+                      if (categories[index] == categories[0]) {
+                        context.read<BottomNavigationCubit>().goTo(1);
+                      } else {
+                        print('${categories[index]['label']} category tapped!');
+                      }
                     },
                   );
                 },

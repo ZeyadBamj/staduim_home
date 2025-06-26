@@ -62,4 +62,19 @@ class TabBookingCubit extends Cubit<TabBookingState> {
 
     emit(state.copyWith(bookings: filtered));
   }
+
+  void addNewBooking(TabBookingModel newBooking) {
+    final updatedBookings = [...tabBookingModel, newBooking];
+
+    tabBookingModel
+      ..clear()
+      ..addAll(updatedBookings);
+
+    final filtered =
+        updatedBookings
+            .where((b) => b.status == state.selectedCategory)
+            .toList();
+
+    emit(state.copyWith(bookings: filtered));
+  }
 }

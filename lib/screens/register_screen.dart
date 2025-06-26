@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
+import 'package:reservision_app/screens/personal_profile_screen.dart';
 import 'package:reservision_app/widgets/common/custom_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
+
+  OutlineInputBorder customOutLineInputBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: kWhiteColor),
+      borderRadius: BorderRadius.circular(16),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +34,8 @@ class RegisterForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
-              keyboardType: TextInputType.numberWithOptions(), // لجعل لوحة المفاتيح ارقام
+              keyboardType:
+                  TextInputType.numberWithOptions(), // لجعل لوحة المفاتيح ارقام
               decoration: InputDecoration(
                 labelText: "البريد الإلكتروني أو رقم الجوال",
                 border: customOutLineInputBorder(),
@@ -46,17 +58,15 @@ class RegisterForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            CustomButton(text: 'إنشاء', onTap: () {}),
+            CustomButton(
+              text: 'دخول',
+              onTap: () {
+                context.read<LoginStatusCubit>().logIn();
+              },
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  OutlineInputBorder customOutLineInputBorder() {
-    return OutlineInputBorder(
-      borderSide: BorderSide(color: kWhiteColor),
-      borderRadius: BorderRadius.circular(16),
     );
   }
 }

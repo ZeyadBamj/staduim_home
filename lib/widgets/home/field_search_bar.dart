@@ -9,7 +9,7 @@ class FieldSearchBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: kWhiteColor,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
             color: kGreyColor,
@@ -24,11 +24,15 @@ class FieldSearchBar extends StatelessWidget {
         onTap: () {
           print('Search field tapped!');
         },
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           hintText: 'ابحث عن ملعبك ...',
           hintStyle: TextStyle(color: kBorderColor),
           suffixIcon: Icon(Icons.search, color: kTextLight),
-          border: InputBorder.none,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: kWhiteColor),
+          ),
           contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         ),
       ),

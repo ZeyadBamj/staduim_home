@@ -4,6 +4,9 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_state.dart';
 import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import 'package:reservision_app/cubits/tab_booking_cubit/tab_booking_cubit.dart';
+import 'package:reservision_app/helper/date_function.dart';
+import 'package:reservision_app/models/tab_booking_model.dart';
 import 'package:reservision_app/widgets/booking_widgets/booking_card.dart';
 import 'package:reservision_app/widgets/booking_widgets/booking_confirmation_section.dart';
 import 'package:reservision_app/widgets/booking_widgets/date_selector_widget.dart';
@@ -29,21 +32,26 @@ class _BookingScreenState extends State<BookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhiteColor,
-      appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.06,
-        title: const Text('حجز', style: TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
-      ),
-      // BlocBuilder يستمع إلى التغييرات في BookingCubit
-      body: BlocBuilder<BookingCubit, BookingState>(
-        builder: (context, state) {
-          // تحديث قيمة الـ TextEditingController من حالة Cubit
-          _messageController.text = state.message;
-          return Directionality(
-            textDirection: TextDirection.rtl,
-            child: SingleChildScrollView(
+    final cubitOfBottomNavigation = context.read<BottomNavigationCubit>();
+    final cubitOfBooking = context.read<BookingCubit>();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: kWhiteColor,
+        appBar: AppBar(
+          toolbarHeight: MediaQuery.of(context).size.height * 0.06,
+          title: const Text(
+            'حجز',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+        ),
+        // BlocBuilder يستمع إلى التغييرات في BookingCubit
+        body: BlocBuilder<BookingCubit, BookingState>(
+          builder: (context, state) {
+            // تحديث قيمة الـ TextEditingController من حالة Cubit
+            _messageController.text = state.message;
+            return SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +60,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   DateSelectorWidget(
                     selectedDate: state.selectedDate,
                     onDateSelected: (onSelectedDate) {
-                      context.read<BookingCubit>().selectDate(onSelectedDate);
+                      cubitOfBooking.selectDate(onSelectedDate);
                     },
                   ),
 
@@ -66,7 +74,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       selectedSize: state.selectedFieldSize,
                       onSizeSelected: (size) {
                         // استدعاء دالة Cubit لتحديث حجم الملعب
-                        context.read<BookingCubit>().selectFieldSize(size);
+                        cubitOfBooking.selectFieldSize(size);
                       },
                     ),
                   ),
@@ -81,7 +89,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       selectedPeriod: state.selectedPeriod,
                       onPeriodSelected: (period) {
                         // استدعاء دالة Cubit لتحديث الفترة
-                        context.read<BookingCubit>().selectPeriod(period);
+                        cubitOfBooking.selectPeriod(period);
                       },
                     ),
                   ),
@@ -94,7 +102,7 @@ class _BookingScreenState extends State<BookingScreen> {
                     messageController: _messageController,
                     onMessageChanged: (message) {
                       // استدعاء دالة Cubit لتحديث الرسالة
-                      context.read<BookingCubit>().updateMessage(message);
+                      cubitOfBooking.updateMessage(message);
                     },
                   ),
                   const Divider(thickness: 2),
@@ -103,15 +111,24 @@ class _BookingScreenState extends State<BookingScreen> {
                   // زر تأكيد الحجز
                   ElevatedButton(
                     onPressed: () {
-                      // هنا يمكنك الوصول إلى الحالة الحالية من Cubit لإتمام عملية الحجز
-                      print('Selected Date: ${state.selectedDate}');
-                      print('Selected Field Size: ${state.selectedFieldSize}');
-                      print('Selected Period: ${state.selectedPeriod}');
-                      print('Message: ${state.message}');
-                      print('Total Price: ${state.totalPrice}');
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      context.read<BottomNavigationCubit>().goTo(2);
+                      final tabCubit = context.read<TabBookingCubit>();
+
+                      final newBooking = TabBookingModel(
+                        image: kEnamImage, // استخدم الصورة المناسبة
+                        name: 'ال', // اسم الملعب
+                        status: 'القادمة',
+                        date: formatDate(cubitOfBooking.state.selectedDate),
+                        day: formatDayName(cubitOfBooking.state.selectedDate),
+                        period: cubitOfBooking.state.selectedPeriod.toString(),
+                        fieldSize:
+                            cubitOfBooking.state.selectedFieldSize.toString(),
+                        price: cubitOfBooking.state.totalPrice.toString(),
+                      );
+
+                      tabCubit.addNewBooking(newBooking);
+
+                      showSuccessDialog(context);
+                      cubitOfBottomNavigation.goTo(2);
                       // قم بإضافة منطق تأكيد الحجز الفعلي هنا (مثلاً: إرسال البيانات إلى API)
                     },
                     style: ElevatedButton.styleFrom(
@@ -129,10 +146,29 @@ class _BookingScreenState extends State<BookingScreen> {
                   const SizedBox(height: 30),
                 ],
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
+}
+
+void showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false, // يمنع إغلاق الـ Dialog بالضغط خارجها
+    builder:
+        (context) => AlertDialog(
+          title: const Text('تنبيه'),
+          content: const Text('تم الحجز بنجاح ✅'),
+        ),
+  );
+
+  // بعد 2 ثانية، يغلق الـ Dialog ثم ينتقل إلى واجهة "حجوزاتي"
+  Future.delayed(const Duration(seconds: 2), () {
+    Navigator.of(context).pop(); // يغلق الـ Dialog
+    Navigator.of(context).pop(); // يغلق الـ Dialog
+    Navigator.of(context).pop(); // يغلق الـ Dialog
+  });
 }

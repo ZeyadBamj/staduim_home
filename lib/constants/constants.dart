@@ -24,7 +24,17 @@ const kBlackColor = Colors.black;
 
 const kEnamImage = 'assets/images/enma_staduim.jpg';
 
-kShadow({
+const kPrimaryColor = Color(0xFF00A651);
+
+const kIconImage = 'assets/images/soccer-field.png';
+
+const kGoogleIcon = 'assets/images/search.png';
+
+const kFacebookIcon = 'assets/images/facebook.png';
+
+const kXIcon = 'assets/images/x.png';
+
+Shadow kShadow({
   required Color color,
   required double blurRadius,
   Offset offSet = const Offset(0, 0),

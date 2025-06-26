@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
+import 'package:reservision_app/screens/personal_profile_screen.dart';
 import 'package:reservision_app/widgets/common/custom_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -30,7 +34,12 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            CustomButton(text: 'دخول', onTap: () {}),
+            CustomButton(
+              text: 'دخول',
+              onTap: () {
+                context.read<LoginStatusCubit>().logIn();
+              },
+            ),
           ],
         ),
       ),

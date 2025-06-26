@@ -3,9 +3,15 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
 import 'package:reservision_app/cubits/city_cubit/city_cubit.dart';
 import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import 'package:reservision_app/cubits/notification_cubit/notification_cubit.dart';
+import 'package:reservision_app/cubits/profile_cubit/profile_cubit.dart';
 import 'package:reservision_app/cubits/tab_booking_cubit/tab_booking_cubit.dart';
 import 'package:reservision_app/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservision_app/screens/notification_screen.dart';
+import 'package:reservision_app/screens/out_login_screen.dart';
+import 'package:reservision_app/screens/personal_profile_screen.dart';
+import 'package:reservision_app/widgets/auth_gate.dart';
 import 'package:reservision_app/widgets/tab_booking_widgets/mock_bookings.dart';
 
 void main() {
@@ -23,6 +29,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CityCubit()),
         BlocProvider(create: (context) => BookingCubit()),
         BlocProvider(create: (context) => TabBookingCubit(mockBookings)),
+        BlocProvider(create: (context) => ProfileCubit()),
+        BlocProvider(create: (context) => NotificationsCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -41,9 +49,28 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Cairo',
             ),
           ),
+
           // Define other theme properties for consistency
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kPrimaryColor,
+              foregroundColor: kWhiteColor,
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: kWhiteColor,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: kGreyColor.shade400),
+            ),
+          ),
         ),
-        home: const HomeScreen(),
+        home: const OutLoginScreen(),
       ),
     );
   }

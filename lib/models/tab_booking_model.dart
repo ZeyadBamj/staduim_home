@@ -1,39 +1,48 @@
 class TabBookingModel {
+  final String status;
+  final String image;
   final String name;
   final String date;
   final String day;
-  final String time;
+  final String period;
+  final String fieldSize;
   final String price;
-  final String status;
-  final String image;
+  final String? message;
 
   TabBookingModel({
+    this.message,
+    required this.status,
+    required this.image,
     required this.name,
     required this.date,
     required this.day,
-    required this.time,
+    required this.period,
+    required this.fieldSize,
     required this.price,
-    required this.status,
-    required this.image,
   });
 
   TabBookingModel copyWith({
+    String? status,
+    String? imageUrl,
     String? name,
     String? date,
     String? day,
     String? time,
+    String? period,
+    String? fieldSize,
     String? price,
-    String? status,
-    String? imageUrl,
+    String? message,
   }) {
     return TabBookingModel(
+      status: status ?? this.status,
+      image: imageUrl ?? this.image,
       name: name ?? this.name,
       date: date ?? this.date,
       day: day ?? this.day,
-      time: time ?? this.time,
+      period: period ?? this.period,
+      fieldSize: fieldSize ?? this.fieldSize,
       price: price ?? this.price,
-      status: status ?? this.status,
-      image: imageUrl ?? this.image,
+      message: message ?? this.message,
     );
   }
 }

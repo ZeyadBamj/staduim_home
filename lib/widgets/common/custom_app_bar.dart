@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/screens/notification_screen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -17,20 +18,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      leading: Builder(
-        builder:
-            (context) => IconButton(
-              icon: const Icon(Icons.menu, color: kWhiteColor),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            kIconImage,
+            width: MediaQuery.of(context).size.width * 0.1,
+          ),
+          Padding(padding: const EdgeInsets.only(right: 5), child: Text(title)),
+        ],
       ),
-      title: Text(title),
       backgroundColor: kGreenColor,
-      centerTitle: true,
       actions: [
         IconButton(
           icon: const Icon(Icons.notifications_active, color: kWhiteColor),
-          onPressed: onNotification,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return NotificationsScreen();
+                },
+              ),
+            );
+          },
         ),
       ],
     );
