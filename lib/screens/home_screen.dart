@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import 'package:reservision_app/screens/exit_finger.dart';
 import 'package:reservision_app/screens/cities_screen.dart';
 import 'package:reservision_app/screens/main_screen.dart';
 import 'package:reservision_app/screens/profile_screen.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
     CitiesScreen(),
     ReservationScreen(),
     ProfileScreen(),
+    ExitFingerScreen(),
   ];
 
   @override
