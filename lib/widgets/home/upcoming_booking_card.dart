@@ -30,7 +30,8 @@ class UpcomingBookingCard extends StatelessWidget {
         elevation: 10,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: kPrimaryColor, width: 2),
+            borderRadius: BorderRadius.circular(16),
             color: kWhiteColor,
           ),
           child: Row(
@@ -74,27 +75,6 @@ class UpcomingBookingCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.calendar_today,
-                            size: 16,
-                            color: kTextLight,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            date,
-                            style: TextStyle(fontSize: 14, color: kGreyColor),
-                          ),
-                          const SizedBox(width: 15),
-                          Icon(Icons.access_time, size: 16, color: kTextLight),
-                          const SizedBox(width: 5),
-                          Text(
-                            time,
-                            style: TextStyle(fontSize: 14, color: kGreyColor),
-                          ),
-                        ],
-                      ),
                     ],
                   ),
                 ),

@@ -24,18 +24,21 @@ class BookingConfirmationSection extends StatelessWidget {
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: kGreenColor,
+            color: kPrimaryColor,
           ),
         ),
       ],
     );
   }
 
-  OutlineInputBorder customOutLineInputBorder({required Color color, double width = 0}) {
+  OutlineInputBorder customOutLineInputBorder({
+    required Color color,
+    double width = 0,
+  }) {
     return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide:  BorderSide(color: color, width: width),
-          );
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(color: color, width: width),
+    );
   }
 
   @override
@@ -63,7 +66,7 @@ class BookingConfirmationSection extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: kGreenColor,
+                color: kPrimaryColor,
               ),
             ),
           ),
@@ -83,9 +86,12 @@ class BookingConfirmationSection extends StatelessWidget {
             hintText: 'أكتب هنا ...',
             border: customOutLineInputBorder(color: kGreyColor),
             enabledBorder: customOutLineInputBorder(color: kGreyColor),
-            focusedBorder: customOutLineInputBorder(color: kGreenColor, width: 2),
+            focusedBorder: customOutLineInputBorder(
+              color: kPrimaryColor,
+              width: 2,
             ),
           ),
+        ),
 
         const SizedBox(height: 20),
         // معلومات إضافية
@@ -95,5 +101,4 @@ class BookingConfirmationSection extends StatelessWidget {
       ],
     );
   }
-
 }

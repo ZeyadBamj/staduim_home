@@ -3,14 +3,14 @@ import 'dart:io';
 
 class ProfileState extends Equatable {
   final String username;
-  final String email;
+  final String phone;
   final File? profileImage;
   final bool isDarkMode;
   final String language;
 
   const ProfileState({
     required this.username,
-    required this.email,
+    required this.phone,
     this.profileImage,
     required this.isDarkMode,
     required this.language,
@@ -18,14 +18,14 @@ class ProfileState extends Equatable {
 
   ProfileState copyWith({
     String? username,
-    String? email,
+    String? phone,
     File? profileImage,
     bool? isDarkMode,
     String? language,
   }) {
     return ProfileState(
       username: username ?? this.username,
-      email: email ?? this.email,
+      phone: phone ?? this.phone,
       profileImage: profileImage ?? this.profileImage,
       isDarkMode: isDarkMode ?? this.isDarkMode,
       language: language ?? this.language,
@@ -33,5 +33,5 @@ class ProfileState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [username, email, profileImage, isDarkMode, language];
+  List<Object?> get props => [username, phone, profileImage, isDarkMode, language];
 }

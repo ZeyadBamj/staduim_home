@@ -13,10 +13,10 @@ class CustomButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.07,
         decoration: BoxDecoration(
-          color: kGreenColor,
-          borderRadius: BorderRadius.circular(8),
+          color: Color(0xff157D1A),
+          borderRadius: BorderRadius.circular(32),
           border: Border.all(
-            color: Colors.blueAccent, // لون الحدود
+            color: kBlackColor, // لون الحدود
             width: 2.0, // عرض الحدود (اختياري)
           ),
         ),

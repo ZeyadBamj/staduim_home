@@ -4,7 +4,7 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/city_cubit/city_cubit.dart';
 import 'package:reservision_app/cubits/city_cubit/city_state.dart';
 import 'package:reservision_app/models/city_model.dart';
-import 'package:reservision_app/screens/description_screen.dart';
+import 'package:reservision_app/screens/details_screen.dart';
 import 'package:reservision_app/widgets/common/custom_app_bar.dart';
 import 'package:reservision_app/widgets/common/custom_elevated_button.dart';
 import 'package:reservision_app/widgets/common/my_drawer.dart';

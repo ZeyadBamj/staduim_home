@@ -22,13 +22,13 @@ class CategoryCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: kBlackColor.withValues(alpha: 0.2), // خلفية للأيقونات
+              color: kPrimaryColor, // خلفية للأيقونات
               shape: BoxShape.circle,
-              border: Border.all(color: kBorderColor, width: 2),
+              border: Border.all(color: kPrimaryColor, width: 2),
             ),
-            child: Icon(icon, color: kPrimaryGreen, size: 35),
+            child: Icon(icon, color: kWhiteColor, size: 70),
           ),
           const SizedBox(height: 5),
           Text(

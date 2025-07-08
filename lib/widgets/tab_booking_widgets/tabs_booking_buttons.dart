@@ -23,14 +23,22 @@ class TabBookingButtons extends StatelessWidget {
                   final isSelected = state.selectedCategory == category;
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isSelected ? kWhiteColor : kGreenColor,
-                      foregroundColor: isSelected ? kGreenColor : kWhiteColor,
+                      side: BorderSide(color: kPrimaryColor, width: 1),
+                      backgroundColor: isSelected ? kPrimaryColor : kWhiteColor,
+                      foregroundColor: isSelected ? kWhiteColor : kPrimaryColor,
                       elevation: isSelected ? 5 : 0,
+                      padding: EdgeInsets.symmetric(horizontal: 30),
                     ),
                     onPressed: () {
                       cubit.selectCategory(category);
                     },
-                    child: Text(category),
+                    child: Text(
+                      category,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   );
                 }).toList(),
           ),

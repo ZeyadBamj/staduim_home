@@ -11,7 +11,7 @@ class FieldSizeSelector extends StatelessWidget {
     required this.onSizeSelected,
   });
 
-   Widget _buildSizeOption(String size, String description) {
+  Widget _buildSizeOption(String size, String description) {
     bool isSelected = selectedSize == size;
     return GestureDetector(
       onTap: () => onSizeSelected(size),

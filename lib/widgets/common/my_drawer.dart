@@ -23,7 +23,7 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: kGreenColor),
+            decoration: BoxDecoration(color: kPrimaryColor),
             child: Row(
               children: [
                 CircleAvatar(

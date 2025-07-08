@@ -16,14 +16,17 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: isSelected ? kGreenColor : kBorderColor,
-          foregroundColor: isSelected ? kWhiteColor : kBlackColor,
+          side: BorderSide(color: kPrimaryColor, width: 1),
+          backgroundColor: isSelected ? kPrimaryColor : kWhiteColor,
+          foregroundColor: isSelected ? kWhiteColor : kPrimaryColor,
+          elevation: isSelected ? 5 : 0,
+          padding: EdgeInsets.symmetric(horizontal: 20),
         ),
-        child: Text(city),
+        child: Text(city, style: TextStyle(fontWeight: FontWeight.bold)),
       ),
     );
   }

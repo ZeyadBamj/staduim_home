@@ -3,21 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
-import 'package:reservision_app/screens/exit_finger.dart';
-import 'package:reservision_app/screens/cities_screen.dart';
-import 'package:reservision_app/screens/main_screen.dart';
-import 'package:reservision_app/screens/profile_screen.dart';
-import 'package:reservision_app/screens/reservision_screen.dart';
+import 'package:reservision_app/screens/owner_control_screen.dart';
+import 'package:reservision_app/screens/owner_details_screen.dart';
+import 'package:reservision_app/screens/owner_main_screen.dart';
+import 'package:reservision_app/screens/owner_notification_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class OwnerHome extends StatelessWidget {
+  const OwnerHome({super.key});
 
   final List<Widget> _screens = const [
-    MainScreen(),
-    CitiesScreen(),
-    ReservationScreen(),
-    ProfileScreen(),
-    ExitFingerScreen(),
+    OwnerMainScreen(),
+    OwnerPlaygroundControlScreen(),
+    OwnerDetailsScreen(),
+    OwnerNotificationsScreen(),
   ];
 
   @override
@@ -40,7 +38,6 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: kPrimaryColor,
             selectedLabelStyle: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.bold,
               shadows: List.filled(
                 5,
                 kShadow(
@@ -63,19 +60,19 @@ class HomeScreen extends StatelessWidget {
                 label: 'الرئيسية',
               ),
               BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.mapLocation, size: 40),
-                activeIcon: Icon(FontAwesomeIcons.mapLocationDot, size: 40),
-                label: 'المدن',
+                icon: Icon(FontAwesomeIcons.pen, size: 40),
+                activeIcon: Icon(FontAwesomeIcons.pencil, size: 40),
+                label: 'الإدارة',
               ),
               BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.calendar, size: 40),
-                activeIcon: Icon(FontAwesomeIcons.calendarDays, size: 40),
-                label: 'حجوزاتي',
+                icon: Icon(FontAwesomeIcons.file, size: 40),
+                activeIcon: Icon(FontAwesomeIcons.filePen, size: 40),
+                label: 'تفاصيل',
               ),
               BottomNavigationBarItem(
-                icon: Icon(FontAwesomeIcons.user, size: 40),
-                activeIcon: Icon(FontAwesomeIcons.userLarge, size: 40),
-                label: 'حسابي',
+                icon: Icon(FontAwesomeIcons.envelope, size: 40),
+                activeIcon: Icon(FontAwesomeIcons.envelopeOpen, size: 40),
+                label: 'الاشعارات',
               ),
             ],
           ),

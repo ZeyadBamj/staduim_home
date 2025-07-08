@@ -4,13 +4,11 @@ import 'package:reservision_app/screens/notification_screen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final void Function()? onSearchTap;
   final void Function()? onNotification;
 
   const CustomAppBar({
     super.key,
     required this.title,
-    this.onSearchTap,
     this.onNotification,
   });
 
@@ -22,16 +20,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            kIconImage,
-            width: MediaQuery.of(context).size.width * 0.1,
+            kBallImage,
+            width: MediaQuery.of(context).size.width * 0.12,
           ),
           Padding(padding: const EdgeInsets.only(right: 5), child: Text(title)),
         ],
       ),
-      backgroundColor: kGreenColor,
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications_active, color: kWhiteColor),
+          icon: const Icon(
+            Icons.notifications_on_outlined,
+            color: kWhiteColor,
+            size: 40,
+          ),
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(

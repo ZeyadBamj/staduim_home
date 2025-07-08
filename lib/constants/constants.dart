@@ -22,17 +22,25 @@ const kRedColor = Colors.red;
 
 const kBlackColor = Colors.black;
 
-const kEnamImage = 'assets/images/enma_staduim.jpg';
+const kPrimaryColor = Color(0xff157D1A);
 
-const kPrimaryColor = Color(0xFF00A651);
+const kYellowColor = Colors.yellow;
+
+const kOrangeColor = Colors.orange;
+
+const kEnamImage = 'assets/images/enma_staduim.jpg';
 
 const kIconImage = 'assets/images/soccer-field.png';
 
-const kGoogleIcon = 'assets/images/search.png';
+const kBallImage = 'assets/images/ball.png';
 
-const kFacebookIcon = 'assets/images/facebook.png';
+const kBackgroundImage = 'assets/images/background.jpg';
 
-const kXIcon = 'assets/images/x.png';
+const kProfileImage = 'assets/images/profile.png';
+
+const kFieldImage = 'assets/images/field.png';
+
+const kCategoryImage = 'assets/images/category.png';
 
 Shadow kShadow({
   required Color color,

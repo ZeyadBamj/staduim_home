@@ -25,9 +25,7 @@ class DateSelectorWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF4CAF50), Color(0xFF66BB6A)],
-        ),
+        gradient: const LinearGradient(colors: [kPrimaryColor, kGreenColor]),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(

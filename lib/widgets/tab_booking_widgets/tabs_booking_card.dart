@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_state.dart';
 import 'package:reservision_app/helper/date_function.dart';
@@ -30,15 +31,19 @@ class TabsBookingCard extends StatelessWidget {
             margin: const EdgeInsets.all(12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
+              side: BorderSide(color: kPrimaryColor, width: 1),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  booking.image,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.22,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    booking.image,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.22,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12),

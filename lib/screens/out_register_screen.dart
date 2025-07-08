@@ -1,137 +1,110 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/screens/home_screen.dart';
-import 'package:reservision_app/widgets/social_buttons.dart';
+import 'package:reservision_app/widgets/common/custom_button.dart';
+import 'package:reservision_app/widgets/common/custom_text_field.dart';
 
 class OutRegisterScreen extends StatelessWidget {
   const OutRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: kPrimaryColor,
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 50),
-                Image.asset(kIconImage, height: 80),
-                const SizedBox(height: 8),
-                const Text(
-                  'ملاعبك',
-                  style: TextStyle(fontSize: 24, color: Colors.white),
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SocialButton(
-                        label: 'التسجيل عبر جوجل',
-                        image: kGoogleIcon,
-                        color: Colors.white,
-                        bgColor: Colors.orangeAccent,
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Expanded(child: Divider(thickness: 1)),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            child: const Text(
-                              'أو',
-                              textAlign: TextAlign.center,
-                            ),
+    return Stack(
+      children: [
+        // صورة الخلفية
+        SizedBox.expand(
+          child: Image.asset(kBackgroundImage, fit: BoxFit.cover),
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(kBallImage, height: 200),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: kWhiteColor,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'إنشاء حساب جديد',
+                          style: TextStyle(
+                            color: Color(0xff258227),
+                            fontSize: 24,
                           ),
-                          Expanded(child: Divider(thickness: 1)),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'الاسم الكامل',
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'البريد الإلكتروني',
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'رقم الجوال',
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        decoration: const InputDecoration(
+                        const SizedBox(height: 5),
+
+                        const SizedBox(height: 8),
+                        CustomTextField(labelText: 'اسم المستخدم'),
+                        const SizedBox(height: 10),
+                        CustomTextField(labelText: 'رقم الجوال'),
+                        const SizedBox(height: 10),
+                        CustomTextField(
                           labelText: 'كلمة المرور',
+                          obscureText: true,
                         ),
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        decoration: const InputDecoration(
+                        const SizedBox(height: 10),
+                        CustomTextField(
                           labelText: 'تأكيد كلمة المرور',
+                          obscureText: true,
                         ),
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return HomeScreen();
-                              },
-                            ),
-                          );
-                        },
-                        child: const Text('تسجيل'),
-                      ),
-                      const SizedBox(height: 24),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'لديك حساب؟  ',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text(
-                              '  تسجيل الدخول  ',
+                        const SizedBox(height: 16),
+                        CustomButton(
+                          text: 'تسجيل',
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return HomeScreen();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'لديك حساب؟  ',
                               style: TextStyle(
-                                color: Color(0xFF00A651),
-                                fontSize: 12,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                '  تسجيل الدخول  ',
+                                style: TextStyle(
+                                  color: Color(0xff258227),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

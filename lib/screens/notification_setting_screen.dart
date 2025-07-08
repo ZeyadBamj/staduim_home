@@ -14,41 +14,38 @@ class _NotificationSettingsScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(title: Text('إعدادات الإشعارات'), centerTitle: true),
-        body: Column(
-          children: [
-            SwitchListTile(
-              title: Text('تفعيل كل الإشعارات'),
-              value: allNotifications,
-              onChanged: (value) {
-                setState(() {
-                  allNotifications = value;
-                });
-              },
-            ),
-            SwitchListTile(
-              title: Text('إشعارات العروض'),
-              value: offers,
-              onChanged: (value) {
-                setState(() {
-                  offers = value;
-                });
-              },
-            ),
-            SwitchListTile(
-              title: Text('إشعارات الحجوزات'),
-              value: bookings,
-              onChanged: (value) {
-                setState(() {
-                  bookings = value;
-                });
-              },
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(title: Text('إعدادات الإشعارات'), centerTitle: true),
+      body: Column(
+        children: [
+          SwitchListTile(
+            title: Text('تفعيل كل الإشعارات'),
+            value: allNotifications,
+            onChanged: (value) {
+              setState(() {
+                allNotifications = value;
+              });
+            },
+          ),
+          SwitchListTile(
+            title: Text('إشعارات العروض'),
+            value: offers,
+            onChanged: (value) {
+              setState(() {
+                offers = value;
+              });
+            },
+          ),
+          SwitchListTile(
+            title: Text('إشعارات الحجوزات'),
+            value: bookings,
+            onChanged: (value) {
+              setState(() {
+                bookings = value;
+              });
+            },
+          ),
+        ],
       ),
     );
   }

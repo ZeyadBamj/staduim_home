@@ -10,19 +10,16 @@ class ExitFingerScreen extends StatelessWidget {
     final shouldExit = await showDialog<bool>(
       context: context,
       builder:
-          (_) => Directionality(
-            textDirection: TextDirection.rtl,
-            child: AlertDialog(
-              title: const Text('تأكيد الخروج'),
-              content: const Text('هل أنت متأكد أنك تريد الخروج من التطبيق؟'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text('لا'),
-                ),
-                TextButton(onPressed: () => exit(0), child: const Text('نعم')),
-              ],
-            ),
+          (_) => AlertDialog(
+            title: const Text('تأكيد الخروج'),
+            content: const Text('هل أنت متأكد أنك تريد الخروج من التطبيق؟'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('لا'),
+              ),
+              TextButton(onPressed: () => exit(0), child: const Text('نعم')),
+            ],
           ),
     );
     return shouldExit ?? false;

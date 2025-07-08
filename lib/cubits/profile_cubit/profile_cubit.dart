@@ -8,7 +8,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     : super(
         const ProfileState(
           username: 'Zeyad',
-          email: 'zeyad@email.com',
+          phone: '770394997',
           isDarkMode: false,
           language: 'engilsh',
         ),
@@ -19,7 +19,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> _loadProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final username = prefs.getString('username') ?? state.username;
-    final email = prefs.getString('email') ?? state.email;
+    final phone = prefs.getString('phone') ?? state.phone;
     final isDarkMode = prefs.getBool('isDarkMode') ?? state.isDarkMode;
     final language = prefs.getString('language') ?? state.language;
     final imagePath = prefs.getString('profileImage');
@@ -28,7 +28,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(
       state.copyWith(
         username: username,
-        email: email,
+        phone: phone,
         isDarkMode: isDarkMode,
         language: language,
         profileImage: imageFile,
@@ -42,10 +42,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     await prefs.setString('username', name);
   }
 
-  void updateEmail(String email) async {
-    emit(state.copyWith(email: email));
+  void updatePhoneNumber(String phone) async {
+    emit(state.copyWith(phone: phone));
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('email', email);
+    await prefs.setString('phone', phone);
   }
 
   void updateImage(File image) async {
@@ -70,7 +70,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(
       const ProfileState(
         username: "Zeyad",
-        email: "zeyad@email.com",
+        phone: "770394997",
         profileImage: null,
         isDarkMode: false,
         language: "العربية",

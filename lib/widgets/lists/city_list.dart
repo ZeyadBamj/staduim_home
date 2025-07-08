@@ -4,7 +4,7 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/city_cubit/city_cubit.dart';
 import 'package:reservision_app/cubits/city_cubit/city_state.dart';
 import 'package:reservision_app/models/city_model.dart';
-import 'package:reservision_app/screens/description_screen.dart';
+import 'package:reservision_app/screens/details_screen.dart';
 
 // class CityList extends StatelessWidget {
 //   final List<CityModel> cityModel;
@@ -98,8 +98,7 @@ class CityList extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        DescriptionScreen(playground: playGround),
+                    builder: (context) => DetailsScreen(playground: playGround),
                   ),
                 );
               },
@@ -109,37 +108,43 @@ class CityList extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(12),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: kPrimaryColor, width: 2),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(12),
+                        ),
+                        child: Image.asset(
+                          playGround.image,
+                          height: MediaQuery.of(context).size.height * 0.23,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      child: Image.asset(
-                        playGround.image,
-                        height: MediaQuery.of(context).size.height * 0.23,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.sports_soccer, color: kGreenColor),
-                          const SizedBox(width: 8),
-                          Text(
-                            playGround.name,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.sports_soccer, color: kGreenColor),
+                            const SizedBox(width: 8),
+                            Text(
+                              playGround.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
