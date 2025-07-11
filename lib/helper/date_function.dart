@@ -4,7 +4,7 @@ String formatDate(DateTime date) {
   final day = date.day;
   final month = DateFormat('MM').format(date);
   final year = DateFormat('y').format(date);
-  return '$day - $month - $year';
+  return '$year - $month - $day';
 }
 
 String formatDayName(DateTime date) {

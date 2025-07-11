@@ -4,6 +4,7 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_state.dart';
 import 'package:reservision_app/helper/date_function.dart';
+import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/models/tab_booking_model.dart';
 import 'package:reservision_app/screens/booking_details_screen.dart';
 
@@ -31,7 +32,7 @@ class TabsBookingCard extends StatelessWidget {
             margin: const EdgeInsets.all(12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: kPrimaryColor, width: 1),
+              side: const BorderSide(color: kPrimaryColor, width: 2),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,8 +41,8 @@ class TabsBookingCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   child: Image.asset(
                     booking.image,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.22,
+                    width: mediaQueryWidth(context, width: 0.95),
+                    height: mediaQueryHeight(context, height: 0.23),
                     fit: BoxFit.cover,
                   ),
                 ),

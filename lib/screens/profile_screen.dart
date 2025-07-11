@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
-import 'package:reservision_app/screens/login_screen.dart';
+import 'package:reservision_app/screens/login_form_screen.dart';
 import 'package:reservision_app/screens/personal_profile_screen.dart';
-import 'package:reservision_app/screens/register_screen.dart';
+import 'package:reservision_app/screens/register_form_screen.dart';
 import 'package:reservision_app/widgets/common/auth_tab.dart';
 import 'package:reservision_app/widgets/common/my_drawer.dart';
 
@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
                 return const PersonalProfileScreen();
               }
               return Scaffold(
-                drawer: MyDrawer(),
+                drawer: const MyDrawer(),
                 appBar: AppBar(
                   title: const Text("مرحبا بك"),
                   centerTitle: true,
@@ -83,7 +83,10 @@ class ProfileScreen extends StatelessWidget {
                       builder: (context, state) {
                         return IndexedStack(
                           index: state == AuthMode.login ? 0 : 1,
-                          children: const [LoginForm(), RegisterForm()],
+                          children: const [
+                            LoginFormScreen(),
+                            RegisterFormScreen(),
+                          ],
                         );
                       },
                     );

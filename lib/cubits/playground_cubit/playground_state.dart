@@ -1,25 +1,25 @@
-import 'package:reservision_app/models/city_model.dart';
+import 'package:reservision_app/models/playground_model.dart';
 
-class CityState {
+class PlayGroundState {
   final String? selectedCity;
-  final List<CityModel> playgrounds;
-  final List<CityModel> filteredPlaygrounds;
+  final List<PlayGroundModel> playgrounds;
+  final List<PlayGroundModel> filteredPlaygrounds;
   final bool hasSearched;
 
-  CityState({
+  PlayGroundState({
     this.selectedCity,
     this.playgrounds = const [],
     this.filteredPlaygrounds = const [],
     this.hasSearched = false,
   });
 
-  CityState copyWith({
+  PlayGroundState copyWith({
     String? selectedCity,
-    List<CityModel>? playgrounds,
-    List<CityModel>? filteredPlaygrounds,
+    List<PlayGroundModel>? playgrounds,
+    List<PlayGroundModel>? filteredPlaygrounds,
     bool? hasSearched,
   }) {
-    return CityState(
+    return PlayGroundState(
       selectedCity: selectedCity ?? this.selectedCity,
       playgrounds: playgrounds ?? this.playgrounds,
       filteredPlaygrounds: filteredPlaygrounds ?? this.filteredPlaygrounds,

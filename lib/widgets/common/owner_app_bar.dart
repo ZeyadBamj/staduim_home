@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
 
 class OwnerAppBar extends StatelessWidget implements PreferredSizeWidget {
   const OwnerAppBar({super.key, required this.title});

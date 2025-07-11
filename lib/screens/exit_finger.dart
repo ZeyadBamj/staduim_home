@@ -1,28 +1,24 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // لإغلاق التطبيق
+import 'package:reservision_app/helper/show_confirm_dialog.dart';
 
 class ExitFingerScreen extends StatelessWidget {
   const ExitFingerScreen({super.key});
 
   Future<bool> _onWillPop(BuildContext context) async {
-    final shouldExit = await showDialog<bool>(
-      context: context,
-      builder:
-          (_) => AlertDialog(
-            title: const Text('تأكيد الخروج'),
-            content: const Text('هل أنت متأكد أنك تريد الخروج من التطبيق؟'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('لا'),
-              ),
-              TextButton(onPressed: () => exit(0), child: const Text('نعم')),
-            ],
-          ),
+    final confireExit = await showConfirmDialog(
+      context,
+      title: 'تأكيد الخروج',
+      content: 'هل أنت متأكد أنك تريد الخروج من التطبيق؟',
+      noText: 'لا',
+      onNo: () {
+        Navigator.of(context).pop(false);
+      },
+      yesText: 'نعم',
+      onYes: () => exit(0),
     );
-    return shouldExit ?? false;
+    return confireExit ?? false;
   }
 
   @override

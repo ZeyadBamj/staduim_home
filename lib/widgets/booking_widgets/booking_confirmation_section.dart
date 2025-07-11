@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/helper/custom_border.dart';
 
 class BookingConfirmationSection extends StatelessWidget {
   final double totalPrice;
@@ -28,16 +29,6 @@ class BookingConfirmationSection extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  OutlineInputBorder customOutLineInputBorder({
-    required Color color,
-    double width = 0,
-  }) {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: color, width: width),
     );
   }
 
@@ -84,11 +75,10 @@ class BookingConfirmationSection extends StatelessWidget {
           onChanged: onMessageChanged, // استدعاء الدالة عند تغيير النص
           decoration: InputDecoration(
             hintText: 'أكتب هنا ...',
-            border: customOutLineInputBorder(color: kGreyColor),
-            enabledBorder: customOutLineInputBorder(color: kGreyColor),
-            focusedBorder: customOutLineInputBorder(
+            enabledBorder: customBorder(color: kGreenColor, width: 2),
+            focusedBorder: customBorder(
               color: kPrimaryColor,
-              width: 2,
+              width: 3,
             ),
           ),
         ),

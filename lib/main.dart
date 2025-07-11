@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
-import 'package:reservision_app/cubits/city_cubit/city_cubit.dart';
+import 'package:reservision_app/cubits/playground_cubit/playground_cubit.dart';
 import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:reservision_app/cubits/notification_cubit/notification_cubit.dart';
 import 'package:reservision_app/cubits/available_periods_cubit/available_periods_cubit.dart';
@@ -9,6 +9,7 @@ import 'package:reservision_app/cubits/notification_cubit/owner_notification_cub
 import 'package:reservision_app/cubits/owner_control_cubit/owner_control_cubit.dart';
 import 'package:reservision_app/cubits/profile_cubit/profile_cubit.dart';
 import 'package:reservision_app/cubits/tab_booking_cubit/tab_booking_cubit.dart';
+import 'package:reservision_app/screens/contact_with_us_screen.dart';
 import 'package:reservision_app/screens/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/screens/notification_screen.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => BottomNavigationCubit()),
-        BlocProvider(create: (context) => CityCubit()),
+        BlocProvider(create: (context) => PlaygroundCubit()),
         BlocProvider(create: (context) => BookingCubit()),
         BlocProvider(create: (context) => TabBookingCubit(mockBookings)),
         BlocProvider(create: (context) => ProfileCubit()),
@@ -77,7 +78,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const OwnerHome(),
+        home: const HomeScreen(),
       ),
     );
   }

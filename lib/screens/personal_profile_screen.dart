@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/text_style_constants.dart';
 import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
 import 'package:reservision_app/cubits/profile_cubit/profile_cubit.dart';
 import 'package:reservision_app/cubits/profile_cubit/profile_state.dart';
-import 'package:reservision_app/screens/profile_screen.dart';
-import 'package:reservision_app/widgets/common/custom_app_bar.dart';
 import 'package:reservision_app/widgets/common/my_drawer.dart';
 import 'package:reservision_app/widgets/profile_widgets/editable_list_tile.dart';
 import 'package:reservision_app/widgets/profile_widgets/profile_functions/edit_field_function.dart';
 import 'package:reservision_app/widgets/profile_widgets/profile_functions/pick_image_function.dart';
 import 'package:reservision_app/widgets/profile_widgets/profile_functions/show_full_image_function.dart';
 import 'package:reservision_app/widgets/profile_widgets/profile_image_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PersonalProfileScreen extends StatelessWidget {
   const PersonalProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubitLoginStatus = context.read<LoginStatusCubit>();
+    final cubitProfile = context.read<ProfileCubit>();
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return Scaffold(
-          drawer: MyDrawer(),
-          appBar: AppBar(title: Text('الحساب الشخصي'), centerTitle: true),
+          drawer: const MyDrawer(),
+          appBar: AppBar(title: const Text('الحساب الشخصي'), centerTitle: true),
           body: ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -31,7 +32,6 @@ class PersonalProfileScreen extends StatelessWidget {
                 child: ProfileImageWidget(
                   imageFile: state.profileImage,
                   onTap: () {
-                    print('تم الضغط على الصورة');
                     showFullImage(context, state.profileImage);
                   },
                   onEdit: () => pickImageFunction(context),
@@ -47,10 +47,7 @@ class PersonalProfileScreen extends StatelessWidget {
                       context: context,
                       title: "تعديل الاسم",
                       initialValue: state.username,
-                      onSave:
-                          (value) => context
-                              .read<ProfileCubit>()
-                              .updateUsername(value),
+                      onSave: (value) => cubitProfile.updateUsername(value),
                     ),
               ),
               EditableListTile(
@@ -62,18 +59,20 @@ class PersonalProfileScreen extends StatelessWidget {
                       context: context,
                       title: "تعديل رقم الجوال",
                       initialValue: state.phone,
-                      onSave:
-                          (value) => context
-                              .read<ProfileCubit>()
-                              .updatePhoneNumber(value),
+                      onSave: (value) => cubitProfile.updatePhoneNumber(value),
                     ),
               ),
-              const Divider(),
+              const SizedBox(height: 20),
+              const Divider(thickness: 2, color: kBlackColor),
               ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text("تسجيل الخروج"),
+                leading: Icon(
+                  Icons.logout,
+                  color: kRedColor,
+                  shadows: [kShadow(color: kRedColor, blurRadius: 5)],
+                ),
+                title: Text("تسجيل الخروج", style: ExitTextStyle.kExitText),
                 onTap: () {
-                  context.read<LoginStatusCubit>().logOut();
+                  cubitLoginStatus.logOut();
                 },
               ),
             ],

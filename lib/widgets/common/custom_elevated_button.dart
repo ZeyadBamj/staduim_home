@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  final String city;
+  final String name;
   final bool isSelected;
   final void Function()? onPressed;
 
   const CustomElevatedButton({
     super.key,
-    required this.city,
+    required this.name,
     required this.isSelected,
     required this.onPressed,
   });
@@ -20,13 +20,16 @@ class CustomElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          side: BorderSide(color: kPrimaryColor, width: 1),
+          side: BorderSide(color: kPrimaryColor, width: 2),
           backgroundColor: isSelected ? kPrimaryColor : kWhiteColor,
           foregroundColor: isSelected ? kWhiteColor : kPrimaryColor,
           elevation: isSelected ? 5 : 0,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 30),
         ),
-        child: Text(city, style: TextStyle(fontWeight: FontWeight.bold)),
+        child: Text(
+          name,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
       ),
     );
   }

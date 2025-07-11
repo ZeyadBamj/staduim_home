@@ -1,10 +1,9 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavigationCubit extends Cubit<int> {
   BottomNavigationCubit() : super(0);
 
-  goTo(int index) {
-    print('Click on BottomNavigationBar number: $index');
+ void goTo(int index) {
     emit(index);
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
+import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/screens/home_screen.dart';
 import 'package:reservision_app/widgets/common/custom_button.dart';
 import 'package:reservision_app/widgets/common/custom_text_field.dart';
@@ -16,14 +18,17 @@ class OutRegisterScreen extends StatelessWidget {
           child: Image.asset(kBackgroundImage, fit: BoxFit.cover),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: kTransparentColor,
           body: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(kBallImage, height: 200),
+                  Image.asset(
+                    kBallImage,
+                    height: mediaQueryHeight(context, height: 0.23),
+                  ),
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.all(16),
@@ -34,26 +39,23 @@ class OutRegisterScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'إنشاء حساب جديد',
-                          style: TextStyle(
-                            color: Color(0xff258227),
-                            fontSize: 24,
-                          ),
+                          style: TextStyle(color: kPrimaryColor, fontSize: 24),
                         ),
                         const SizedBox(height: 5),
 
                         const SizedBox(height: 8),
-                        CustomTextField(labelText: 'اسم المستخدم'),
+                        const CustomTextField(labelText: 'اسم المستخدم'),
                         const SizedBox(height: 10),
-                        CustomTextField(labelText: 'رقم الجوال'),
+                       const CustomTextField(labelText: 'رقم الجوال', keyboardType: TextInputType.numberWithOptions(),),
                         const SizedBox(height: 10),
-                        CustomTextField(
+                        const CustomTextField(
                           labelText: 'كلمة المرور',
                           obscureText: true,
                         ),
                         const SizedBox(height: 10),
-                        CustomTextField(
+                        const CustomTextField(
                           labelText: 'تأكيد كلمة المرور',
                           obscureText: true,
                         ),
@@ -64,7 +66,7 @@ class OutRegisterScreen extends StatelessWidget {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return HomeScreen();
+                                  return const HomeScreen();
                                 },
                               ),
                             );
@@ -88,7 +90,7 @@ class OutRegisterScreen extends StatelessWidget {
                               child: const Text(
                                 '  تسجيل الدخول  ',
                                 style: TextStyle(
-                                  color: Color(0xff258227),
+                                  color: kPrimaryColor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -99,6 +101,7 @@ class OutRegisterScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/constants/text_style_constants.dart';
 import 'package:reservision_app/cubits/owner_control_cubit/owner_control_cubit.dart';
 import 'package:reservision_app/cubits/owner_control_cubit/owner_control_state.dart';
+import 'package:reservision_app/helper/show_confirm_dialog.dart';
 import 'package:reservision_app/models/available_period.dart';
 import 'package:reservision_app/widgets/booking_widgets/booking_card.dart';
 import 'package:reservision_app/widgets/booking_widgets/field_size_selector.dart';
@@ -129,43 +130,21 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                                       size: 32,
                                     ),
                                     onPressed: () async {
-                                      final k = await showDialog<bool>(
-                                        context: context,
-                                        builder:
-                                            (context) => AlertDialog(
-                                              title: const Text('حذف الفترة'),
-                                              content: const Text(
-                                                'هل أنت متأكد أنك تريد حذف هذه الفترة؟',
-                                              ),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed:
-                                                      () => Navigator.of(
-                                                        context,
-                                                      ).pop(false), // لا للخروج
-                                                  child: const Text(
-                                                    'لا',
-                                                    style: TextStyle(
-                                                      color: kPrimaryColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                                TextButton(
-                                                  onPressed:
-                                                      () => Navigator.of(
-                                                        context,
-                                                      ).pop(true), // نعم للخروج
-                                                  child: const Text(
-                                                    'نعم',
-                                                    style: TextStyle(
-                                                      color: kRedColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                      final deletePeriod = await showConfirmDialog(
+                                        context,
+                                        title: 'حذف الفترة',
+                                        content:
+                                            'هل أنت متأكد أنك تريد حذف هذه الفترة؟',
+                                        noText: 'لا',
+                                        onNo: () {
+                                          Navigator.of(context).pop(false);
+                                        },
+                                        yesText: 'نعم',
+                                        onYes: () {
+                                          Navigator.of(context).pop(true);
+                                        },
                                       );
-                                      if (k == true) {
+                                      if (deletePeriod == true) {
                                         cubit.deletePeriod(
                                           selectedSize,
                                           period.id,
@@ -193,7 +172,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                             icon: const Icon(FontAwesomeIcons.plus),
                             label: const Text(
                               "   إضافة فترة جديدة   ",
-                              style: kSnackBar,
+                              style: OwnerControlStyle.kSnackBar,
                             ),
                           ),
                         ),
@@ -249,8 +228,11 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: ElevatedButton.icon(
                             onPressed: () {},
-                            icon: const Icon(FontAwesomeIcons.paperPlane),
-                            label: const Text("  تثبيت   ", style: kSnackBar),
+                            icon: const Icon(FontAwesomeIcons.penToSquare),
+                            label: const Text(
+                              "  تثبيت   ",
+                              style: OwnerControlStyle.kSnackBar,
+                            ),
                           ),
                         ),
                       ),
@@ -304,7 +286,10 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                               setState(() => startTime = picked);
                             }
                           },
-                          child: const Text("اختر", style: kAddPeriod),
+                          child: const Text(
+                            "اختر",
+                            style: OwnerControlStyle.kAddPeriod,
+                          ),
                         ),
                       ],
                     ),
@@ -326,7 +311,10 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                               setState(() => endTime = picked);
                             }
                           },
-                          child: const Text("اختر", style: kAddPeriod),
+                          child: const Text(
+                            "اختر",
+                            style: OwnerControlStyle.kAddPeriod,
+                          ),
                         ),
                       ],
                     ),
@@ -335,7 +323,10 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text("إلغاء", style: kAddPeriod),
+                    child: const Text(
+                      "إلغاء",
+                      style: OwnerControlStyle.kAddPeriod,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
@@ -347,7 +338,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                           const SnackBar(
                             content: Text(
                               'الرجاء اختيار وقت البدء  ❗',
-                              style: kSnackBar,
+                              style: OwnerControlStyle.kSnackBar,
                             ),
                             backgroundColor: kGreenColor,
                           ),
@@ -361,7 +352,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                           const SnackBar(
                             content: Text(
                               'الرجاء اختيار وقت الانتهاء  ❗',
-                              style: kSnackBar,
+                              style: OwnerControlStyle.kSnackBar,
                             ),
                             backgroundColor: kGreenColor,
                           ),
@@ -379,7 +370,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                           const SnackBar(
                             content: Text(
                               'وقت الانتهاء يجب أن يكون بعد وقت البدء  ❗',
-                              style: kSnackBar,
+                              style: OwnerControlStyle.kSnackBar,
                             ),
                             backgroundColor: kGreenColor,
                           ),
@@ -392,7 +383,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                           const SnackBar(
                             content: Text(
                               'يجب أن تكون المدة على الأقل 30 دقيقة ❗',
-                              style: kSnackBar,
+                              style: OwnerControlStyle.kSnackBar,
                             ),
                             backgroundColor: kGreenColor,
                           ),
@@ -421,7 +412,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                     },
                     child: Text(
                       editPeriod == null ? "إضافة" : "حفظ",
-                      style: kAddPeriod,
+                      style: OwnerControlStyle.kAddPeriod,
                     ),
                   ),
                 ],

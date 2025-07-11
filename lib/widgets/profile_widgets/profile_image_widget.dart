@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
 
 // lib/widgets/profile_image_widget.dart
 class ProfileImageWidget extends StatelessWidget {
@@ -23,25 +24,32 @@ class ProfileImageWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTap, // تأكد من هذا السطر
-          child: CircleAvatar(
-            radius: 50,
-            backgroundImage:
-                imageFile != null
-                    ? FileImage(imageFile!)
-                    : const AssetImage(kEnamImage) as ImageProvider,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(80),
+              side: BorderSide(color: kPrimaryColor, width: 3),
+            ),
+            elevation: 10,
+            child: CircleAvatar(
+              radius: 80,
+              backgroundImage:
+                  imageFile != null
+                      ? FileImage(imageFile!)
+                      : const AssetImage(kEnamImage) as ImageProvider,
+            ),
           ),
         ),
 
         widget ??
             Positioned(
               bottom: 0,
-              right: 0,
+              right: 10,
               child: InkWell(
                 onTap: onEdit,
                 child: const CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Colors.blue,
-                  child: Icon(Icons.edit, size: 16, color: Colors.white),
+                  radius: 20,
+                  backgroundColor: kBlueColor,
+                  child: Icon(Icons.edit, size: 20, color: kWhiteColor),
                 ),
               ),
             ),

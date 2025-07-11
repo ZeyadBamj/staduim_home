@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
 
 void showFullImage(BuildContext context, File? imageFile) {
   showDialog(
@@ -9,7 +10,7 @@ void showFullImage(BuildContext context, File? imageFile) {
     barrierDismissible: true,
     builder: (context) {
       return Dialog(
-        backgroundColor: Colors.black,
+        backgroundColor: kBlackColor,
         insetPadding: EdgeInsets.zero, // لا نريد هوامش للنوافذ
         child: GestureDetector(
           onTap: () => Navigator.of(context).pop(), // اغلاق عند الضغط بالخارج

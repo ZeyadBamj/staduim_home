@@ -30,21 +30,20 @@ class CategoryCard extends StatelessWidget {
             ),
             child: Icon(icon, color: kWhiteColor, size: 70),
           ),
-          const SizedBox(height: 5),
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
-              color: kTextDark,
-              fontWeight: FontWeight.w500,
+            style: const TextStyle(
+              fontSize: 16,
+              color: kBlackColor,
+              fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
           Text(
             soon,
-            style: TextStyle(
-              fontSize: 12,
-              color: kTextDark,
+            style: const TextStyle(
+              fontSize: 14,
+              color: kBlackColor,
               fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,

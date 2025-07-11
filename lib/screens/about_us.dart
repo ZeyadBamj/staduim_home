@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
 
 class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({super.key});
@@ -7,74 +9,35 @@ class AboutAppScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('عن التطبيق'), centerTitle: true),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'مرحبًا بك في Reservision – رفيقك الذكي لعالم الملاعب!',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      body: Column(
+        children: [
+          const SizedBox(height: 30),
+          Center(
+            child: Image.asset(
+              kBallImage,
+              color: kPrimaryColor,
+              height: 150,
+              width: 150,
             ),
-            SizedBox(height: 20),
-            SelectableText(
-              '''
-    📱 هل تبحث عن ملعب قريب لحجزه بسهولة؟  
-    ⚽ هل تود تنظيم مباراة مع أصدقائك دون عناء التنسيق؟  
-    مع Reservision، صار كل ذلك ممكنًا… بنقرة واحدة فقط!
-    
-    🔍 تصفح مئات الملاعب في مدينتك  
-    🗓️ احجز الموعد الذي يناسبك فورًا  
-    ⭐ شاهد تقييمات اللاعبين قبلك  
-    📍 استعرض الخدمات، الصور، والموقع  
-    🧾 واحتفظ بكل حجوزاتك في مكان واحد
-    ''',
-              style: TextStyle(fontSize: 16, height: 1.6),
-              textAlign: TextAlign.start,
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: Text(
+              'تطبيق "ملعب" هو منصة متخصصة لحجز ملاعب كرة القدم والمنشأت الرياضية بكل سهولة،'
+              'حيث يمكنك من خلاله: \n'
+              '⚽استعراض الملاعب القريبة.\n'
+              '⚽معرفة الاسعار والمواعيد المتاحة.\n'
+              '⚽إجراء حجز مباشرة من التطبيق.\n'
+              '⚽خيارات متعددة للدفع عن طريق: \n'
+              '1-الدفع الإلكتروني.\n'
+              '2-الدفع عن طريق التحويل لحساب صاحب الملعب.\n'
+              '3-الدفع عند الحضور خلال ساعة من الحجز.\n\n\n'
+              'هدفنا هو:\n 1-تسهيل عميلة الحجز للمستخدمين وتنطيم أوقات اللعب للأفراد والفرق الرياضية.\n'
+              '2-تنظيم الحجوزات لأصحاب الملاعب.',
+              style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 20),
-            Text(
-              'لماذا Reservision؟',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.orange,
-              ),
-            ),
-            SizedBox(height: 10),
-            SelectableText('''
-    - لأننا نؤمن أن الرياضة للجميع.
-    - ولأننا نريد أن نجعل الوصول إلى الملاعب أسهل، وأسرع، وأكثر احترافية.
-    - ولأننا نساعد أصحاب الملاعب على تنظيم حجوزاتهم وزيادة دخلهم.
-    ''', style: TextStyle(fontSize: 16, height: 1.6)),
-            SizedBox(height: 20),
-            Text(
-              '🎯 هدفنا:',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'أن نبني مجتمعًا رياضيًا صحيًا… منظمًا… ومتصلًا بتقنية المستقبل.',
-              style: TextStyle(fontSize: 16, height: 1.6),
-            ),
-            SizedBox(height: 30),
-            Center(
-              child: Text(
-                '🚀 حمل التطبيق الآن، وابدأ تجربتك الرياضية الذكية!',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

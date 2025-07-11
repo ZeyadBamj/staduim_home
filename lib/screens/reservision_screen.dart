@@ -14,13 +14,7 @@ class ReservationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(),
-      appBar: CustomAppBar(
-        title: 'حجوزاتي',
-        onNotification: () {
-          // Handle profile icon tap
-          print('Notification icon tapped!');
-        },
-      ),
+      appBar: CustomAppBar(title: 'حجوزاتي'),
       body: Column(
         children: [
           const TabBookingButtons(),

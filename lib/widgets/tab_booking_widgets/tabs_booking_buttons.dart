@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/tab_booking_cubit/tab_booking_cubit.dart';
 import 'package:reservision_app/cubits/tab_booking_cubit/tab_booking_state.dart';
+import 'package:reservision_app/widgets/common/custom_elevated_button.dart';
 
 class TabBookingButtons extends StatelessWidget {
   const TabBookingButtons({super.key});
@@ -20,25 +20,13 @@ class TabBookingButtons extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children:
                 categories.map((category) {
-                  final isSelected = state.selectedCategory == category;
-                  return ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(color: kPrimaryColor, width: 1),
-                      backgroundColor: isSelected ? kPrimaryColor : kWhiteColor,
-                      foregroundColor: isSelected ? kWhiteColor : kPrimaryColor,
-                      elevation: isSelected ? 5 : 0,
-                      padding: EdgeInsets.symmetric(horizontal: 30),
-                    ),
+                  final categoryName = state.selectedCategory == category;
+                  return CustomElevatedButton(
+                    name: category,
+                    isSelected: categoryName,
                     onPressed: () {
                       cubit.selectCategory(category);
                     },
-                    child: Text(
-                      category,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   );
                 }).toList(),
           ),

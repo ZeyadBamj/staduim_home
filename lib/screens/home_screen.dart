@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:reservision_app/screens/exit_finger.dart';
-import 'package:reservision_app/screens/cities_screen.dart';
+import 'package:reservision_app/screens/playgrounds_screen.dart';
 import 'package:reservision_app/screens/main_screen.dart';
 import 'package:reservision_app/screens/profile_screen.dart';
 import 'package:reservision_app/screens/reservision_screen.dart';
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   final List<Widget> _screens = const [
     MainScreen(),
-    CitiesScreen(),
+    PlaygroundScreen(),
     ReservationScreen(),
     ProfileScreen(),
     ExitFingerScreen(),
@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: currentIndex,
             selectedItemColor: kWhiteColor,
-            unselectedItemColor: kGreenColor.shade400,
+            unselectedItemColor: kGreenColor.shade300,
             onTap: (index) {
               cubit.goTo(index);
             },

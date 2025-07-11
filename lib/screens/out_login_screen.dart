@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
+import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/screens/home_screen.dart';
 import 'package:reservision_app/screens/out_register_screen.dart';
 import 'package:reservision_app/widgets/common/custom_button.dart';
@@ -17,14 +19,17 @@ class OutLoginScreen extends StatelessWidget {
           child: Image.asset(kBackgroundImage, fit: BoxFit.cover),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: kTransparentColor,
           body: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(kBallImage, height: 200),
+                  Image.asset(
+                    kBallImage,
+                    height: mediaQueryHeight(context, height: 0.24),
+                  ),
                   const SizedBox(height: 16),
                   Container(
                     padding: const EdgeInsets.all(16),
@@ -38,13 +43,13 @@ class OutLoginScreen extends StatelessWidget {
                         Image.asset(
                           kProfileImage,
                           color: kBlackColor,
-                          height: MediaQuery.of(context).size.height * 0.15,
+                          height: mediaQueryHeight(context, height: 0.15),
                         ),
-                        CustomTextField(
+                        const CustomTextField(
                           labelText: 'اسم المتسخدم او رقم الجوال',
                         ),
                         const SizedBox(height: 20),
-                        CustomTextField(
+                       const CustomTextField(
                           labelText: 'كلمة المرور',
                           obscureText: true,
                         ),
@@ -55,7 +60,7 @@ class OutLoginScreen extends StatelessWidget {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return HomeScreen();
+                                  return const HomeScreen();
                                 },
                               ),
                             );
@@ -77,7 +82,7 @@ class OutLoginScreen extends StatelessWidget {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return OutRegisterScreen();
+                                      return const OutRegisterScreen();
                                     },
                                   ),
                                 );
@@ -85,7 +90,7 @@ class OutLoginScreen extends StatelessWidget {
                               child: const Text(
                                 '  إنشاء حساب جديد ',
                                 style: TextStyle(
-                                  color: Color(0xff258227),
+                                  color: kPrimaryColor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -96,6 +101,7 @@ class OutLoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),

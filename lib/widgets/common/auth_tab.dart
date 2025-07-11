@@ -26,22 +26,22 @@ class AuthTab extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected ? kBlueColor.shade100 : Colors.transparent,
+            color: isSelected ? kWhiteColor : Colors.transparent,
             border: Border(
               bottom: BorderSide(
-                color: isSelected ? kBlueColor : kGreyColor,
+                color: isSelected ? kWhiteColor : kPrimaryColor,
                 width: 1,
               ),
             ),
-            borderRadius: BorderRadius.circular(8),
+            // borderRadius: BorderRadius.circular(2),
           ),
           child: Center(
             child: Text(
               title,
               style: TextStyle(
-                color: isSelected ? kBlueColor : kWhiteColor,
+                color: isSelected ? kBlackColor : kWhiteColor,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                fontSize: isSelected ? 16 : null,
+                fontSize: isSelected ? 18 : null,
               ),
             ),
           ),

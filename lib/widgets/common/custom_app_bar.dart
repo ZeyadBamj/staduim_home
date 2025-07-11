@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/images_constants.dart';
+import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/screens/notification_screen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final void Function()? onNotification;
 
-  const CustomAppBar({
-    super.key,
-    required this.title,
-    this.onNotification,
-  });
+  const CustomAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Image.asset(
             kBallImage,
-            width: MediaQuery.of(context).size.width * 0.12,
+            width: mediaQueryWidth(context, width: 0.12),
           ),
           Padding(padding: const EdgeInsets.only(right: 5), child: Text(title)),
         ],
@@ -37,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return NotificationsScreen();
+                  return const NotificationsScreen();
                 },
               ),
             );

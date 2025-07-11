@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/constants.dart';
 
 class EditableListTile extends StatelessWidget {
   final String title;
@@ -17,13 +18,23 @@ class EditableListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      subtitle: Text(value),
-      trailing: IconButton(
-        icon: const Icon(Icons.edit),
-        onPressed: onEdit,
+      leading: Icon(
+        icon,
+        color: kBlackColor,
       ),
+      title: Text('${title} :', style: TextStyle(fontWeight: FontWeight.bold)),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Text(
+          value,
+          style: TextStyle(
+            fontSize: 16,
+            color: kPrimaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      trailing: IconButton(icon: const Icon(Icons.edit), onPressed: onEdit),
     );
   }
 }
