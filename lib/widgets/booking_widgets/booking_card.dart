@@ -16,10 +16,10 @@ class BookingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
+      elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
-        side: const BorderSide(color: kGreyColor, width: 0.5),
+        side: const BorderSide(color: kPrimaryColor, width: 2),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),

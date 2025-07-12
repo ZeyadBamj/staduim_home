@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservision_app/constants/constants.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   @override
@@ -15,11 +16,18 @@ class _NotificationSettingsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('إعدادات الإشعارات'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text(
+          'إعدادات الإشعارات',
+          style: TextStyle(fontWeight: FontWeight.normal),
+        ),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           SwitchListTile(
-            title: Text('تفعيل كل الإشعارات'),
+            activeColor: kPrimaryColor,
+            title: const Text('تفعيل كل الإشعارات'),
             value: allNotifications,
             onChanged: (value) {
               setState(() {
@@ -28,7 +36,8 @@ class _NotificationSettingsScreenState
             },
           ),
           SwitchListTile(
-            title: Text('إشعارات العروض'),
+            activeColor: kPrimaryColor,
+            title: const Text('إشعارات العروض'),
             value: offers,
             onChanged: (value) {
               setState(() {
@@ -37,7 +46,8 @@ class _NotificationSettingsScreenState
             },
           ),
           SwitchListTile(
-            title: Text('إشعارات الحجوزات'),
+            activeColor: kPrimaryColor,
+            title: const Text('إشعارات الحجوزات'),
             value: bookings,
             onChanged: (value) {
               setState(() {

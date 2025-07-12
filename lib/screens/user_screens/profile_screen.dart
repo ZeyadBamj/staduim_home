@@ -20,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
       ],
       child: BlocBuilder<LoginStatusCubit, bool?>(
         builder: (context, isLoggedIn) {
+          final cubitProfile = context.read<ProfileCubit>();
           return Builder(
             builder: (context) {
               if (isLoggedIn == null) {
@@ -47,21 +48,13 @@ class ProfileScreen extends StatelessWidget {
                                       title: "تسجيل الدخول",
                                       mode: ProfileMode.login,
                                       currentMode: state,
-                                      onTap:
-                                          () =>
-                                              context
-                                                  .read<ProfileCubit>()
-                                                  .showLogin(),
+                                      onTap: () => cubitProfile.showLogin(),
                                     ),
                                     AuthTab(
                                       title: "إنشاء حساب",
                                       mode: ProfileMode.register,
                                       currentMode: state,
-                                      onTap:
-                                          () =>
-                                              context
-                                                  .read<ProfileCubit>()
-                                                  .showRegister(),
+                                      onTap: () => cubitProfile.showRegister(),
                                     ),
                                   ],
                                 );

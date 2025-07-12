@@ -78,7 +78,10 @@ class _FieldSearchBarState extends State<FieldSearchBar> {
                               itemCount: results.length,
                               itemBuilder: (context, index) {
                                 final field = results[index];
-                                final city = BlocProvider.of<PlaygroundCubit>(context).playgroundCityMap[field];
+                                final city =
+                                    BlocProvider.of<PlaygroundCubit>(
+                                      context,
+                                    ).playgroundCityMap[field];
 
                                 return ListTile(
                                   title: Text(field.name),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/helper/date_function.dart';
 
 class DateSelectorWidget extends StatelessWidget {
   final DateTime selectedDate;
-  final Function(DateTime) onDateSelected;
+  final void Function(DateTime) onDateSelected;
 
   const DateSelectorWidget({
     super.key,
@@ -13,11 +13,43 @@ class DateSelectorWidget extends StatelessWidget {
     required this.onDateSelected,
   });
 
-  String _formatDate(DateTime date) {
-    final dayName = DateFormat('EEEE').format(date);
-    final day = date.day;
-    final month = DateFormat('MMMM').format(date);
-    return '$dayName  $day $month';
+  //اختر التاريخ
+  Future<void> pickDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate:
+          selectedDate.isBefore(DateTime.now()) ? DateTime.now() : selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null) {
+      final now = DateTime.now();
+      final pickedWithTime = DateTime(
+        picked.year,
+        picked.month,
+        picked.day,
+        now.hour,
+        now.minute,
+        now.second,
+        now.millisecond,
+      );
+      onDateSelected(pickedWithTime);
+    }
+  }
+
+  // سهم اليمين
+  void backArrow() {
+    final minDate = DateTime.now().subtract(const Duration(days: 1));
+    final previousDate = selectedDate.subtract(const Duration(days: 1));
+
+    if (!previousDate.isBefore(minDate)) {
+      onDateSelected(previousDate);
+    }
+  }
+
+  // سهم اليسار
+  void forwardArrow() {
+    onDateSelected(selectedDate.add(const Duration(days: 1)));
   }
 
   @override
@@ -33,28 +65,7 @@ class DateSelectorWidget extends StatelessWidget {
         children: [
           TextButton.icon(
             onPressed: () async {
-              final DateTime? picked = await showDatePicker(
-                context: context,
-                initialDate:
-                    selectedDate.isBefore(DateTime.now())
-                        ? DateTime.now()
-                        : selectedDate,
-                firstDate: DateTime.now(),
-                lastDate: DateTime(2030),
-              );
-              if (picked != null) {
-                final now = DateTime.now();
-                final pickedWithTime = DateTime(
-                  picked.year,
-                  picked.month,
-                  picked.day,
-                  now.hour,
-                  now.minute,
-                  now.second,
-                  now.millisecond,
-                );
-                onDateSelected(pickedWithTime);
-              }
+              await pickDate(context);
             },
             icon: const Icon(
               FontAwesomeIcons.calendarCheck,
@@ -69,31 +80,19 @@ class DateSelectorWidget extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  final minDate = DateTime.now().subtract(
-                    const Duration(days: 1),
-                  );
-                  final previousDate = selectedDate.subtract(
-                    const Duration(days: 1),
-                  );
-
-                  if (!previousDate.isBefore(minDate)) {
-                    onDateSelected(previousDate);
-                  }
+                  backArrow();
                 },
                 icon: const Icon(Icons.arrow_back_ios, color: kWhiteColor),
               ),
               Text(
-                _formatDate(selectedDate),
+                formatDateWidget(selectedDate),
                 style: const TextStyle(
                   color: kWhiteColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               IconButton(
-                onPressed:
-                    () => onDateSelected(
-                      selectedDate.add(const Duration(days: 1)),
-                    ),
+                onPressed: () => forwardArrow(),
                 icon: const Icon(Icons.arrow_forward_ios, color: kWhiteColor),
               ),
             ],

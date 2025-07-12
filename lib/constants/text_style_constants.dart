@@ -13,7 +13,7 @@ class MainStyle {
 
 class OwnerControlStyle {
   static const kSnackBar = TextStyle(color: kWhiteColor, fontSize: 18);
-  static const kAddPeriod = TextStyle(color: kPrimaryColor, fontSize: 16);
+  static const kAddPeriod = TextStyle(color: kBlueColor, fontSize: 16);
 }
 
 class OwnerDetailsStyle {
@@ -54,4 +54,8 @@ class DetailsStyle {
     letterSpacing: 1,
     wordSpacing: 1,
   );
+}
+
+class BookingDetailsStyle {
+  static const kDetails = TextStyle(fontSize: 18);
 }

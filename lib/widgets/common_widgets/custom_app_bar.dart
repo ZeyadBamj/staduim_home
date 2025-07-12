@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/constants/images_constants.dart';
+import 'package:reservision_app/cubits/notification_cubit/user_notification_cubit.dart';
 import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/screens/user_screens/notification_screen.dart';
 
@@ -16,10 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
-            kBallImage,
-            width: mediaQueryWidth(context, width: 0.12),
-          ),
+          Image.asset(kBallImage, width: mediaQueryWidth(context, width: 0.12)),
           Padding(padding: const EdgeInsets.only(right: 5), child: Text(title)),
         ],
       ),
@@ -34,7 +33,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return const NotificationsScreen();
+                  return BlocProvider(
+                    create: (context) => UserNotificationsCubit(),
+                    child: NotificationsScreen(),
+                  );
                 },
               ),
             );

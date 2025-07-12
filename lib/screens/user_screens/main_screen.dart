@@ -18,7 +18,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Map<String, dynamic>> categories = [
+  List<Map<String, dynamic>> categories = const [
     {'icon': FontAwesomeIcons.futbol, 'label': 'كرة القدم', 'soon': ''},
     {
       'icon': FontAwesomeIcons.basketball,
@@ -57,10 +57,10 @@ class _MainScreenState extends State<MainScreen> {
                   Text('Welcome', style: MainStyle.kGreetingText),
                 ],
               ),
-
+      
               const SizedBox(height: 5),
               const FieldSearchBar(),
-
+      
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -70,11 +70,11 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
               const SizedBox(height: 5),
-
+      
               const UpcomingBookingsCarousel(),
-
+      
               const SizedBox(height: 20),
-
+      
               Row(
                 children: [
                   const SizedBox(width: 15),

@@ -12,42 +12,46 @@ class PeriodSelector extends StatelessWidget {
   });
 
   final List<String> _periods = const [
-    '6:30 مساءً الى 8:30 مساءً',
-    '8:30 مساء الى 10:30 مساءً.',
-    '10:30 مساء الى 12:30 صباحاً',
-    '12:30 صباحاً إلى 2:30 صباحاً',
+    '6:30 م الى 8:30 م',
+    '8:30 م الى 10:30 م.',
+    '10:30 م الى 12:30 ص',
+    '12:30 ص إلى 2:30 ص',
   ];
 
   Widget _buildPeriodOption(String period) {
     final isSelected = selectedPeriod == period;
     return GestureDetector(
       onTap: () => onPeriodSelected(period),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: isSelected ? kGreenColor.shade100 : kWhiteColor,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: isSelected ? kGreenColor : kGreyColor,
-            width: isSelected ? 2 : 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                period,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: isSelected ? kGreenColor : kBlackColor,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+      child: Card(
+        elevation: isSelected ? 5 : 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+          decoration: BoxDecoration(
+            color: isSelected ? kGreenColor.shade100 : kWhiteColor,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: isSelected ? kGreenColor : kGreyColor,
+              width: isSelected ? 2 : 1,
             ),
-            if (isSelected)
-              const Icon(Icons.check_circle, color: kGreenColor, size: 18),
-          ],
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  period,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: isSelected ? kPrimaryColor : kBlackColor,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              if (isSelected)
+                const Icon(Icons.check_circle, color: kPrimaryColor, size: 18),
+            ],
+          ),
         ),
       ),
     );

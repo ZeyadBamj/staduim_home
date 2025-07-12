@@ -2,11 +2,11 @@ import 'package:reservision_app/models/reservision_model.dart';
 
 class ReservisionState {
   final String selectedCategory;
-  final List<ReservisionModel> tabBookingModel;
+  final List<ReservisionModel> reservisionModel;
 
   ReservisionState({
     required this.selectedCategory,
-    required this.tabBookingModel,
+    required this.reservisionModel,
   });
 
   ReservisionState copyWith({
@@ -15,7 +15,7 @@ class ReservisionState {
   }) {
     return ReservisionState(
       selectedCategory: selectedCategory ?? this.selectedCategory,
-      tabBookingModel: bookings ?? this.tabBookingModel,
+      reservisionModel: bookings ?? this.reservisionModel,
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:reservision_app/cubits/booking_cubit/booking_state.dart';
 import 'package:reservision_app/cubits/home_cubit/home_cubit.dart';
 import 'package:reservision_app/cubits/reservision_cubit/reservision_cubit.dart';
 import 'package:reservision_app/helper/date_function.dart';
+import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/helper/showSuccessDialog.dart';
 import 'package:reservision_app/models/reservision_model.dart';
 import 'package:reservision_app/widgets/booking_widgets/booking_card.dart';
@@ -14,6 +15,7 @@ import 'package:reservision_app/widgets/booking_widgets/booking_confirmation_sec
 import 'package:reservision_app/widgets/booking_widgets/date_selector_widget.dart';
 import 'package:reservision_app/widgets/booking_widgets/field_size_selector.dart';
 import 'package:reservision_app/widgets/booking_widgets/period_selector.dart';
+import 'package:reservision_app/widgets/common_widgets/custom_button.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -34,113 +36,105 @@ class _BookingScreenState extends State<BookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cubitOfBottomNavigation = context.read<HomeCubit>();
-    final cubitOfBooking = context.read<BookingCubit>();
+    final cubitHome = context.read<HomeCubit>();
+    final cubitBooking = context.read<BookingCubit>();
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: AppBar(
-        toolbarHeight: MediaQuery.of(context).size.height * 0.06,
+        toolbarHeight: mediaQueryHeight(context, height: 0.06),
         title: const Text('حجز', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
-      // BlocBuilder يستمع إلى التغييرات في BookingCubit
       body: BlocBuilder<BookingCubit, BookingState>(
         builder: (context, state) {
           // تحديث قيمة الـ TextEditingController من حالة Cubit
           _messageController.text = state.message;
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // مكوّن اختيار التاريخ
-                DateSelectorWidget(
-                  selectedDate: state.selectedDate,
-                  onDateSelected: (onSelectedDate) {
-                    cubitOfBooking.selectDate(onSelectedDate);
-                  },
-                ),
-
-                const Divider(thickness: 2),
-                const SizedBox(height: 10),
-                // بطاقة لاختيار حجم الملعب
-                BookingCard(
-                  title: 'اختر حجم الملعب',
-                  subtitle: 'يختلف السعر حسب حجم الملعب.',
-                  content: FieldSizeSelector(
-                    selectedSize: state.selectedFieldSize,
-                    onSizeSelected: (size) {
-                      // استدعاء دالة Cubit لتحديث حجم الملعب
-                      cubitOfBooking.selectFieldSize(size);
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque, // مهم لو تستخدم ScrollView
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // مكوّن اختيار التاريخ
+                  DateSelectorWidget(
+                    selectedDate: state.selectedDate,
+                    onDateSelected: (onSelectedDate) {
+                      cubitBooking.selectDate(onSelectedDate);
                     },
                   ),
-                ),
-                const Divider(thickness: 2),
-                const SizedBox(height: 10),
-                // بطاقة لاختيار الفترة
-                BookingCard(
-                  title: 'اختر الفترة',
-                  subtitle:
-                      'اختر أحد الفترات المتاحة\nقد تختلف الفترات حسب حجم الملعب',
-                  content: PeriodSelector(
-                    selectedPeriod: state.selectedPeriod,
-                    onPeriodSelected: (period) {
-                      // استدعاء دالة Cubit لتحديث الفترة
-                      cubitOfBooking.selectPeriod(period);
-                    },
-                  ),
-                ),
-                const Divider(thickness: 2),
-                const SizedBox(height: 10),
 
-                // قسم تأكيد الحجز والرسالة
-                BookingConfirmationSection(
-                  totalPrice: state.totalPrice,
-                  messageController: _messageController,
-                  onMessageChanged: (message) {
-                    // استدعاء دالة Cubit لتحديث الرسالة
-                    cubitOfBooking.updateMessage(message);
-                  },
-                ),
-                const Divider(thickness: 2),
-                const SizedBox(height: 10),
-
-                // زر تأكيد الحجز
-                ElevatedButton(
-                  onPressed: () {
-                    final tabCubit = context.read<ReservisionCubit>();
-
-                    final newBooking = ReservisionModel(
-                      image: kEnamImage, // استخدم الصورة المناسبة
-                      name: 'ال', // اسم الملعب
-                      status: 'القادمة',
-                      date: formatDate(cubitOfBooking.state.selectedDate),
-                      day: formatDayName(cubitOfBooking.state.selectedDate),
-                      period: cubitOfBooking.state.selectedPeriod.toString(),
-                      fieldSize:
-                          cubitOfBooking.state.selectedFieldSize.toString(),
-                      price: cubitOfBooking.state.totalPrice.toString(),
-                    );
-
-                    showSuccessDialog(context);
-                    tabCubit.addNewBooking(newBooking);
-                    cubitOfBottomNavigation.goTo(2);
-                    // قم بإضافة منطق تأكيد الحجز الفعلي هنا (مثلاً: إرسال البيانات إلى API)
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  const SizedBox(height: 15),
+                  // بطاقة لاختيار حجم الملعب
+                  BookingCard(
+                    title: 'اختر حجم الملعب',
+                    subtitle: 'يختلف السعر حسب حجم الملعب.',
+                    content: FieldSizeSelector(
+                      selectedSize: state.selectedFieldSize,
+                      onSizeSelected: (size) {
+                        // استدعاء دالة Cubit لتحديث حجم الملعب
+                        cubitBooking.selectFieldSize(size);
+                      },
                     ),
                   ),
-                  child: const Text(
-                    'تأكيد الحجز',
-                    style: TextStyle(fontSize: 18, color: kWhiteColor),
+                  const SizedBox(height: 15),
+                  // بطاقة لاختيار الفترة
+                  BookingCard(
+                    title: 'اختر الفترة',
+                    subtitle:
+                        'اختر أحد الفترات المتاحة\nقد تختلف الفترات حسب حجم الملعب',
+                    content: PeriodSelector(
+                      selectedPeriod: state.selectedPeriod,
+                      onPeriodSelected: (period) {
+                        // استدعاء دالة Cubit لتحديث الفترة
+                        cubitBooking.selectPeriod(period);
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 30),
-              ],
+                  const SizedBox(height: 15),
+
+                  // قسم تأكيد الحجز والرسالة
+                  BookingConfirmationSection(
+                    totalPrice: state.totalPrice,
+                    messageController: _messageController,
+                    onMessageChanged: (message) {
+                      // استدعاء دالة Cubit لتحديث الرسالة
+                      cubitBooking.updateMessage(message);
+                    },
+                  ),
+                  const Divider(thickness: 2, color: kBlackColor),
+                  const SizedBox(height: 15),
+
+                  // زر تأكيد الحجز
+                  CustomButton(
+                    text: 'تأكيد الحجز',
+                    onTap: () {
+                      final tabCubit = context.read<ReservisionCubit>();
+
+                      final newBooking = ReservisionModel(
+                        image: kEnamImage, // استخدم الصورة المناسبة
+                        name: 'ال', // اسم الملعب
+                        status: 'القادمة',
+                        date: formatDate(cubitBooking.state.selectedDate),
+                        day: formatDayName(cubitBooking.state.selectedDate),
+                        period: cubitBooking.state.selectedPeriod.toString(),
+                        fieldSize:
+                            cubitBooking.state.selectedFieldSize.toString(),
+                        price: cubitBooking.state.totalPrice.toString(),
+                      );
+
+                      showSuccessDialog(context);
+                      tabCubit.addNewBooking(newBooking);
+                      cubitHome.goTo(2);
+                      // قم بإضافة منطق تأكيد الحجز الفعلي هنا (مثلاً: إرسال البيانات إلى API)
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
             ),
           );
         },

@@ -14,23 +14,29 @@ Future<bool?> showConfirmDialog(
   return showDialog<bool>(
     context: context,
     builder:
-        (context) => AlertDialog(
-          backgroundColor: kGreenColor.shade300,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+        (context) => GestureDetector(
+          behavior: HitTestBehavior.opaque, // مهم لو تستخدم ScrollView
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: AlertDialog(
+            backgroundColor: kGreenColor.shade300,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            content: content,
+            actions: [
+              TextButton(
+                onPressed: onNo, // لا للخروج
+                child: Text(noText, style: ShowConfirmDialogStyle.kNo),
+              ),
+              TextButton(
+                onPressed: onYes, // نعم للخروج
+                child: Text(yesText, style: ShowConfirmDialogStyle.kYes),
+              ),
+            ],
           ),
-          title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-          content: content,
-          actions: [
-            TextButton(
-              onPressed: onNo, // لا للخروج
-              child: Text(noText, style: ShowConfirmDialogStyle.kNo),
-            ),
-            TextButton(
-              onPressed: onYes, // نعم للخروج
-              child: Text(yesText, style: ShowConfirmDialogStyle.kYes),
-            ),
-          ],
         ),
   );
 }

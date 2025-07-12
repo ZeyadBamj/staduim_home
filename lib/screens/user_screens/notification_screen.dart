@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/cubits/notification_cubit/notification_cubit.dart';
-import 'package:reservision_app/models/notification_model.dart';
+import 'package:reservision_app/cubits/notification_cubit/user_notification_cubit.dart';
+import 'package:reservision_app/models/user_notification_model.dart';
 import 'package:reservision_app/screens/user_screens/notification_setting_screen.dart';
+import 'package:reservision_app/widgets/common_widgets/custom_button.dart';
 import 'package:reservision_app/widgets/notification_widget/notification_tile.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -10,27 +11,36 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<UserNotificationsCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('الإشعارات'),
+        title: const Text(
+          'الإشعارات',
+          style: TextStyle(fontWeight: FontWeight.normal),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings, size: 30),
             onPressed:
                 () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => NotificationSettingsScreen(),
+                    builder: (context) => NotificationSettingsScreen(),
                   ),
                 ),
           ),
         ],
       ),
-      body: BlocBuilder<NotificationsCubit, List<NotificationModel>>(
+      body: BlocBuilder<UserNotificationsCubit, List<UserNotificationModel>>(
         builder: (context, notifications) {
           if (notifications.isEmpty) {
-            return Center(child: Text('لا توجد إشعارات حالياً'));
+            return const Center(
+              child: Text(
+                'لا توجد إشعارات حالياً',
+                style: TextStyle(fontSize: 24),
+              ),
+            );
           }
           return ListView.builder(
             itemCount: notifications.length,
@@ -44,11 +54,11 @@ class NotificationsScreen extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: ElevatedButton(
-            onPressed: () {
-              context.read<NotificationsCubit>().markAllAsRead();
+          child: CustomButton(
+            text: 'تحديد الكل كمقروء',
+            onTap: () {
+              cubit.markAllAsRead();
             },
-            child: Text('تحديد الكل كمقروء'),
           ),
         ),
       ),

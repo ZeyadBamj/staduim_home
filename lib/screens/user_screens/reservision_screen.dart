@@ -24,8 +24,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: CustomAppBar(title: 'حجوزاتي'),
+      drawer: const MyDrawer(),
+      appBar: const CustomAppBar(title: 'حجوزاتي'),
       body: Column(
         children: [
           const ReservisionButtons(),
@@ -33,10 +33,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
             child: BlocBuilder<ReservisionCubit, ReservisionState>(
               builder: (context, state) {
                 return ListView.builder(
-                  itemCount: state.tabBookingModel.length,
+                  itemCount: state.reservisionModel.length,
                   itemBuilder: (context, index) {
                     return ReservisionCard(
-                      booking: state.tabBookingModel[index],
+                      booking: state.reservisionModel[index],
                     );
                   },
                 );

@@ -10,7 +10,7 @@ class ReservisionCubit extends Cubit<ReservisionState> {
       super(
         ReservisionState(
           selectedCategory: 'القادمة',
-          tabBookingModel:
+          reservisionModel:
               initialBookings.where((b) => b.status == 'القادمة').toList(),
         ),
       );

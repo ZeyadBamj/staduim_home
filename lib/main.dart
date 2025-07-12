@@ -3,7 +3,7 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
 import 'package:reservision_app/cubits/playground_cubit/playground_cubit.dart';
 import 'package:reservision_app/cubits/home_cubit/home_cubit.dart';
-import 'package:reservision_app/cubits/notification_cubit/notification_cubit.dart';
+import 'package:reservision_app/cubits/notification_cubit/user_notification_cubit.dart';
 import 'package:reservision_app/cubits/notification_cubit/owner_notification_cubit.dart';
 import 'package:reservision_app/cubits/owner_control_cubit/owner_control_cubit.dart';
 import 'package:reservision_app/cubits/personal_profile_cubit/personal_profile_cubit.dart';
@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => BookingCubit()),
         BlocProvider(create: (context) => ReservisionCubit(mockBookings)),
         BlocProvider(create: (context) => PersonalProfileCubit()),
-        BlocProvider(create: (context) => NotificationsCubit()),
         BlocProvider(create: (context) => OwnerControlCubit()),
         BlocProvider(create: (context) => OwnerNotificationCubit()),
       ],
@@ -81,7 +80,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const HomeScreen(),
+        home: const OwnerHome(),
       ),
     );
   }

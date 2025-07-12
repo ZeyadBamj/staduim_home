@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/models/notification_model.dart';
+import 'package:reservision_app/models/user_notification_model.dart';
 
 class NotificationTile extends StatelessWidget {
-  final NotificationModel notification;
+  final UserNotificationModel notification;
 
   const NotificationTile({super.key, required this.notification});
 

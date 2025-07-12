@@ -1,19 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/models/notification_model.dart';
+import 'package:reservision_app/models/user_notification_model.dart';
 
-class NotificationsCubit extends Cubit<List<NotificationModel>> {
-  NotificationsCubit() : super([]);
+class UserNotificationsCubit extends Cubit<List<UserNotificationModel>> {
+  UserNotificationsCubit() : super([]);
 
   /// تحميل إشعارات وهمية (يمكن لاحقًا ربطها بـ Firebase أو قاعدة بيانات)
   void loadNotifications() {
     emit([
-      NotificationModel(
+      UserNotificationModel(
         id: '1',
         title: 'تم تأكيد الحجز',
         body: 'تم تأكيد حجزك لملعب انماء الجديدة',
         timestamp: DateTime.now().subtract(Duration(minutes: 30)),
       ),
-      NotificationModel(
+      UserNotificationModel(
         id: '2',
         title: 'عرض جديد!',
         body: 'احصل على خصم 20% عند الحجز اليوم',
@@ -24,29 +24,37 @@ class NotificationsCubit extends Cubit<List<NotificationModel>> {
 
   /// تحديد إشعار واحد كمقروء
   void markAsRead(String id) {
-    emit(state.map((n) {
-      if (n.id == id) {
-        return NotificationModel(
-          id: n.id,
-          title: n.title,
-          body: n.body,
-          timestamp: n.timestamp,
-          isRead: true,
-        );
-      }
-      return n;
-    }).toList());
+    emit(
+      state.map((n) {
+        if (n.id == id) {
+          return UserNotificationModel(
+            id: n.id,
+            title: n.title,
+            body: n.body,
+            timestamp: n.timestamp,
+            isRead: true,
+          );
+        }
+        return n;
+      }).toList(),
+    );
   }
 
   /// تحديد جميع الإشعارات كمقروءة
   void markAllAsRead() {
-    emit(state.map((n) => NotificationModel(
-      id: n.id,
-      title: n.title,
-      body: n.body,
-      timestamp: n.timestamp,
-      isRead: true,
-    )).toList());
+    emit(
+      state
+          .map(
+            (n) => UserNotificationModel(
+              id: n.id,
+              title: n.title,
+              body: n.body,
+              timestamp: n.timestamp,
+              isRead: true,
+            ),
+          )
+          .toList(),
+    );
   }
 
   /// حذف إشعار واحد

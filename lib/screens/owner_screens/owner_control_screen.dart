@@ -5,6 +5,8 @@ import 'package:reservision_app/constants/constants.dart';
 import 'package:reservision_app/constants/text_style_constants.dart';
 import 'package:reservision_app/cubits/owner_control_cubit/owner_control_cubit.dart';
 import 'package:reservision_app/cubits/owner_control_cubit/owner_control_state.dart';
+import 'package:reservision_app/helper/custom_border.dart';
+import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/helper/show_confirm_dialog.dart';
 import 'package:reservision_app/models/owner_available_period_model.dart';
 import 'package:reservision_app/widgets/booking_widgets/booking_card.dart';
@@ -17,27 +19,25 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kGreenColor.shade200,
-      appBar: OwnerAppBar(title: 'ادارة الملعب'),
-      body: BlocBuilder<OwnerControlCubit, OwnerControlState>(
-        builder: (context, state) {
-          final cubit = context.read<OwnerControlCubit>();
-          final selectedSize = state.selectedSize;
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        FocusScope.of(context).unfocus(); // ← يخفي لوحة المفاتيح ويزيل التركيز
+      },
+      child: Scaffold(
+        backgroundColor: kGreenColor.shade200,
+        appBar: const OwnerAppBar(title: 'ادارة الملعب'),
+        body: BlocBuilder<OwnerControlCubit, OwnerControlState>(
+          builder: (context, state) {
+            final cubit = context.read<OwnerControlCubit>();
+            final selectedSize = state.selectedSize;
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: BorderSide(color: kPrimaryColor, width: 2),
-                  ),
-                  color: kGreenColor,
-                  elevation: 7,
-                  child: BookingCard(
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BookingCard(
                     title: 'اختر حجم الملعب :',
                     subtitle: 'لكل حجم سعر وفترات مستقلة',
                     content: FieldSizeSelector(
@@ -47,203 +47,205 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
-                if (selectedSize == null)
-                  const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(40.0),
-                      child: Text(
-                        "اختر حجم الملعب الذي تريده",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 16),
-
-                      const Text(
-                        "الفترات المتاحة :",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.periods[selectedSize]?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          final period = state.periods[selectedSize]![index];
-                          return Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              side: BorderSide(color: kPrimaryColor, width: 1),
-                            ),
-                            elevation: 5,
-                            margin: EdgeInsets.symmetric(vertical: 8),
-                            child: ListTile(
-                              title: Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Text(
-                                  "${period.endTime.format(context)} - ${period.startTime.format(context)}",
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.edit,
-                                      color: kBlueColor,
-                                      size: 32,
-                                    ),
-                                    onPressed:
-                                        () => _showPeriodDialog(
-                                          context,
-                                          cubit,
-                                          selectedSize,
-                                          editPeriod: period,
-                                        ),
-                                  ),
-
-                                  const SizedBox(width: 10),
-
-                                  IconButton(
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: kRedColor,
-                                      size: 32,
-                                    ),
-                                    onPressed: () async {
-                                      final deletePeriod = await showConfirmDialog(
-                                        context,
-                                        title: 'حذف الفترة',
-                                        content: Text(
-                                          'هل أنت متأكد أنك تريد حذف هذه الفترة؟',
-                                        ),
-                                        noText: 'لا',
-                                        onNo: () {
-                                          Navigator.of(context).pop(false);
-                                        },
-                                        yesText: 'نعم',
-                                        onYes: () {
-                                          Navigator.of(context).pop(true);
-                                        },
-                                      );
-                                      if (deletePeriod == true) {
-                                        cubit.deletePeriod(
-                                          selectedSize,
-                                          period.id,
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 12),
-                      Center(
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          child: ElevatedButton.icon(
-                            onPressed:
-                                () => _showPeriodDialog(
-                                  context,
-                                  cubit,
-                                  selectedSize,
-                                ),
-                            icon: const Icon(FontAwesomeIcons.plus),
-                            label: const Text(
-                              "   إضافة فترة جديدة   ",
-                              style: OwnerControlStyle.kSnackBar,
-                            ),
+                  if (selectedSize == null)
+                    const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(40.0),
+                        child: Text(
+                          "اختر حجم الملعب الذي تريده",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
+                    )
+                  else
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 16),
 
-                      const SizedBox(height: 50),
-                      // السعر
-                      Text(
-                        'السعر :',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                        const Text(
+                          "الفترات المتاحة :",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        cursorColor: kBlackColor,
-                        controller: TextEditingController(
-                          text:
-                              state.pricePerHour[selectedSize]?.toString() ??
-                              '',
+                        const SizedBox(height: 10),
+
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.periods[selectedSize]?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            final period = state.periods[selectedSize]![index];
+                            return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                side: const BorderSide(
+                                  color: kPrimaryColor,
+                                  width: 1,
+                                ),
+                              ),
+                              elevation: 5,
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                title: Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text(
+                                    "${period.endTime.format(context)} - ${period.startTime.format(context)}",
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.edit,
+                                        color: kBlueColor,
+                                        size: 32,
+                                      ),
+                                      onPressed:
+                                          () => _showPeriodDialog(
+                                            context,
+                                            cubit,
+                                            selectedSize,
+                                            editPeriod: period,
+                                          ),
+                                    ),
+
+                                    const SizedBox(width: 10),
+
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: kRedColor,
+                                        size: 32,
+                                      ),
+                                      onPressed: () async {
+                                        final deletePeriod =
+                                            await showConfirmDialog(
+                                              context,
+                                              title: 'حذف الفترة',
+                                              content: const Text(
+                                                'هل أنت متأكد أنك تريد حذف هذه الفترة؟',
+                                              ),
+                                              noText: 'لا',
+                                              onNo: () {
+                                                Navigator.of(
+                                                  context,
+                                                ).pop(false);
+                                              },
+                                              yesText: 'نعم',
+                                              onYes: () {
+                                                Navigator.of(context).pop(true);
+                                              },
+                                            );
+                                        if (deletePeriod == true) {
+                                          cubit.deletePeriod(
+                                            selectedSize,
+                                            period.id,
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: 'سعر الساعة الواحدة بـ(ر.ي)',
-                          labelStyle: TextStyle(
-                            color: kBlackColor,
+                        const SizedBox(height: 12),
+                        Center(
+                          child: SizedBox(
+                            width: mediaQueryWidth(context, width: 0.7),
+                            child: ElevatedButton.icon(
+                              onPressed:
+                                  () => _showPeriodDialog(
+                                    context,
+                                    cubit,
+                                    selectedSize,
+                                  ),
+                              icon: const Icon(FontAwesomeIcons.plus),
+                              label: const Text(
+                                "   إضافة فترة جديدة   ",
+                                style: OwnerControlStyle.kSnackBar,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 50),
+                        // السعر
+                        const Text(
+                          'السعر :',
+                          style: TextStyle(
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: kGreenColor,
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          cursorColor: kBlackColor,
+                          controller: TextEditingController(
+                            text:
+                                state.pricePerHour[selectedSize]?.toString() ??
+                                '',
+                          ),
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: 'سعر الساعة الواحدة بـ(ر.ي)',
+                            labelStyle: const TextStyle(
+                              color: kBlackColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            enabledBorder: customBorder(
+                              color: kPrimaryColor,
+                              width: 2,
+                            ),
+                            focusedBorder: customBorder(
+                              color: kPrimaryColor,
                               width: 3,
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                              width: 4,
+                          onSubmitted: (value) {
+                            final price = double.tryParse(value);
+                            if (price != null) {
+                              cubit.setPriceForSize(selectedSize, price);
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 50),
+                        Center(
+                          child: SizedBox(
+                            width: mediaQueryWidth(context, width: 0.4),
+                            child: ElevatedButton.icon(
+                              onPressed: () {},
+                              icon: const Icon(FontAwesomeIcons.penToSquare),
+                              label: const Text(
+                                "  تثبيت   ",
+                                style: OwnerControlStyle.kSnackBar,
+                              ),
                             ),
                           ),
                         ),
-                        onSubmitted: (value) {
-                          final price = double.tryParse(value);
-                          if (price != null) {
-                            cubit.setPriceForSize(selectedSize, price);
-                          }
-                        },
-                      ),
-                      const SizedBox(height: 50),
-                      Center(
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: const Icon(FontAwesomeIcons.penToSquare),
-                            label: const Text(
-                              "  تثبيت   ",
-                              style: OwnerControlStyle.kSnackBar,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 50),
-                    ],
-                  ),
-              ],
-            ),
-          );
-        },
+                        const SizedBox(height: 50),
+                      ],
+                    ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -265,7 +267,14 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
           child: StatefulBuilder(
             builder: (context, setState) {
               return AlertDialog(
-                title: Text(editPeriod == null ? 'إضافة فترة' : 'تعديل فترة'),
+                backgroundColor: kGreenColor.shade300,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                title: Text(
+                  editPeriod == null ? 'إضافة فترة' : 'تعديل فترة',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -275,7 +284,10 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                         const Spacer(),
                         Directionality(
                           textDirection: TextDirection.ltr,
-                          child: Text(startTime?.format(context) ?? "--"),
+                          child: Text(
+                            startTime?.format(context) ?? "--",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -300,7 +312,10 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                         const Spacer(),
                         Directionality(
                           textDirection: TextDirection.ltr,
-                          child: Text(endTime?.format(context) ?? "--"),
+                          child: Text(
+                            endTime?.format(context) ?? "--",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -326,9 +341,11 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                     child: const Text(
                       "إلغاء",
-                      style: OwnerControlStyle.kAddPeriod,
+                      style: ShowConfirmDialogStyle.kNo,
                     ),
                   ),
+
+                  // منطق زر الاضافة او التعديل
                   TextButton(
                     onPressed: () {
                       final messenger = ScaffoldMessenger.of(context);
@@ -361,25 +378,29 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                         return;
                       }
 
-                      // التحقق من أن وقت الانتهاء بعد وقت البدء
-                      final startMinutes =
-                          startTime!.hour * 60 + startTime!.minute;
-                      final endMinutes = endTime!.hour * 60 + endTime!.minute;
+                      int newStart = startTime!.hour * 60 + startTime!.minute;
+                      int newEnd = endTime!.hour * 60 + endTime!.minute;
 
-                      if (endMinutes <= startMinutes) {
-                        messenger.showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'وقت الانتهاء يجب أن يكون بعد وقت البدء  ❗',
-                              style: OwnerControlStyle.kSnackBar,
-                            ),
-                            backgroundColor: kGreenColor,
-                          ),
-                        );
-                        return;
+                      if (newEnd <= newStart) {
+                        newEnd += 1440; // عبور منتصف الليل
                       }
 
-                      if ((endMinutes - startMinutes) < 30) {
+                      // if (newEnd <= newStart) {
+                      //   messenger.showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text(
+                      //         'وقت الانتهاء يجب أن يكون بعد وقت البدء  ❗',
+                      //         style: OwnerControlStyle.kSnackBar,
+                      //       ),
+                      //       backgroundColor: kGreenColor,
+                      //     ),
+                      //   );
+                      //   return;
+                      // }
+
+                      final duration = newEnd - newStart;
+
+                      if (duration < 30) {
                         messenger.showSnackBar(
                           const SnackBar(
                             content: Text(
@@ -392,13 +413,56 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
                         return;
                       }
 
+                      if (duration > 360) {
+                        messenger.showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'مدة الحجز لا تقل عن 30 دقيقة ولا تزيد عن 6 ساعات❗',
+                              style: OwnerControlStyle.kSnackBar,
+                            ),
+                            backgroundColor: kGreenColor,
+                          ),
+                        );
+                        return;
+                      }
+
+                      // ✅ التحقق من عدم التداخل مع فترات أخرى
+                      final existingPeriods = cubit.state.periods[size] ?? [];
+                      final overlaps = existingPeriods.any((period) {
+                        if (editPeriod != null && period.id == editPeriod.id) {
+                          return false;
+                        }
+                        int existingStart =
+                            period.startTime.hour * 60 +
+                            period.startTime.minute;
+                        int existingEnd =
+                            period.endTime.hour * 60 + period.endTime.minute;
+                        if (existingEnd <= existingStart) existingEnd += 1440;
+
+                        return (newStart < existingEnd) &&
+                            (newEnd > existingStart);
+                      });
+
+                      if (overlaps) {
+                        messenger.showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'الفترة الجديدة تتداخل مع فترة أخرى موجودة ❗',
+                              style: OwnerControlStyle.kSnackBar,
+                            ),
+                            backgroundColor: kGreenColor,
+                          ),
+                        );
+                        return;
+                      }
+
+                      // ✅ إنشاء الفترة بعد التحقق الكامل
                       final newPeriod = OwnerAvailablePeriodModel(
                         id: editPeriod?.id ?? const Uuid().v4(),
                         startTime: startTime!,
                         endTime: endTime!,
                       );
 
-                      final cubit = context.read<OwnerControlCubit>();
                       if (editPeriod == null) {
                         cubit.addPeriod(cubit.state.selectedSize!, newPeriod);
                       } else {
@@ -411,9 +475,10 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
 
                       Navigator.pop(context);
                     },
+
                     child: Text(
                       editPeriod == null ? "إضافة" : "حفظ",
-                      style: OwnerControlStyle.kAddPeriod,
+                      style: ShowConfirmDialogStyle.kYes,
                     ),
                   ),
                 ],

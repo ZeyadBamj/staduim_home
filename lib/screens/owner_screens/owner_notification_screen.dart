@@ -33,14 +33,16 @@ class OwnerNotificationsScreen extends StatelessWidget {
               ),
             );
           }
-
+    
           return ListView.builder(
             padding: const EdgeInsets.all(12),
             itemCount: notifications.length,
             itemBuilder: (context, index) {
               final item = notifications[index];
-              final formattedDate = DateFormat('yyyy-MM-dd').format(item.date);
-
+              final formattedDate = DateFormat(
+                'yyyy-MM-dd',
+              ).format(item.date);
+    
               // حالة الحجز ولونها
               String statusText;
               Color statusColor;
@@ -57,7 +59,7 @@ class OwnerNotificationsScreen extends StatelessWidget {
                   statusText = "غير مؤكدة";
                   statusColor = kOrangeColor;
               }
-
+    
               return Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -85,14 +87,16 @@ class OwnerNotificationsScreen extends StatelessWidget {
                       if (item.message != null && item.message!.isNotEmpty)
                         Text("📩 ملاحظة: ${item.message}"),
                       const SizedBox(height: 12),
-
+    
                       // الحالة
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Chip(
                             label: Text(statusText),
-                            backgroundColor: statusColor.withValues(alpha: 0.4),
+                            backgroundColor: statusColor.withValues(
+                              alpha: 0.4,
+                            ),
                             labelStyle: TextStyle(color: statusColor),
                           ),
                           if (item.status == BookingStatus.pending)

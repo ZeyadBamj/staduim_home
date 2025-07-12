@@ -19,13 +19,20 @@ class BookingConfirmationSection extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label, style: const TextStyle(fontSize: 16)),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: kBlueColor,
+          ),
+        ),
         Text(
           value,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: kPrimaryColor,
+            color: kRedColor,
           ),
         ),
       ],
@@ -43,21 +50,23 @@ class BookingConfirmationSection extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         // عرض سعر حجز الملعب
-        Container(
-          padding: const EdgeInsets.all(12),
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+        SizedBox(
+          height: 70,
+          child: Card(
             color: kBorderColor,
-            border: Border.all(color: kGreyColor),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Text(
-              '$totalPrice ريال',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: kPrimaryColor,
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide(color: kPrimaryColor, width: 2),
+            ),
+            child: Center(
+              child: Text(
+                '$totalPrice ريال',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: kPrimaryColor,
+                ),
               ),
             ),
           ),
@@ -69,16 +78,19 @@ class BookingConfirmationSection extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         // حقل إدخال الرسالة
-        TextField(
-          controller: messageController,
-          maxLines: 3,
-          onChanged: onMessageChanged, // استدعاء الدالة عند تغيير النص
-          decoration: InputDecoration(
-            hintText: 'أكتب هنا ...',
-            enabledBorder: customBorder(color: kGreenColor, width: 2),
-            focusedBorder: customBorder(
-              color: kPrimaryColor,
-              width: 3,
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          elevation: 5,
+          child: TextField(
+            controller: messageController,
+            maxLines: 3,
+            onChanged: onMessageChanged, // استدعاء الدالة عند تغيير النص
+            decoration: InputDecoration(
+              hintText: 'أكتب هنا ...',
+              enabledBorder: customBorder(color: kGreenColor, width: 2),
+              focusedBorder: customBorder(color: kPrimaryColor, width: 3),
             ),
           ),
         ),

@@ -19,7 +19,7 @@ class PersonalProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubitLoginStatus = context.read<LoginStatusCubit>();
-    final cubitProfile = context.read<PersonalProfileCubit>();
+    final cubitPersonal = context.read<PersonalProfileCubit>();
     return BlocBuilder<PersonalProfileCubit, PersonalProfileState>(
       builder: (context, state) {
         return Scaffold(
@@ -47,7 +47,7 @@ class PersonalProfileScreen extends StatelessWidget {
                       context: context,
                       title: "تعديل الاسم",
                       initialValue: state.username,
-                      onSave: (value) => cubitProfile.updateUsername(value),
+                      onSave: (value) => cubitPersonal.updateUsername(value),
                     ),
               ),
               EditableListTile(
@@ -59,7 +59,7 @@ class PersonalProfileScreen extends StatelessWidget {
                       context: context,
                       title: "تعديل رقم الجوال",
                       initialValue: state.phone,
-                      onSave: (value) => cubitProfile.updatePhoneNumber(value),
+                      onSave: (value) => cubitPersonal.updatePhoneNumber(value),
                     ),
               ),
               const SizedBox(height: 20),
