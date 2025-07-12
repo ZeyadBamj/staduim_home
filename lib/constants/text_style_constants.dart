@@ -32,6 +32,8 @@ class ShowConfirmDialogStyle {
   );
 
   static const kNo = TextStyle(color: kWhiteColor);
+
+  static const kContent = TextStyle(fontSize: 18);
 }
 
 class ExitTextStyle {

@@ -5,7 +5,7 @@ import 'package:reservision_app/constants/text_style_constants.dart';
 Future<bool?> showConfirmDialog(
   BuildContext context, {
   required String title,
-  required String content,
+  required Widget content,
   required String noText,
   required VoidCallback onNo,
   required String yesText,
@@ -20,7 +20,7 @@ Future<bool?> showConfirmDialog(
             borderRadius: BorderRadius.circular(16),
           ),
           title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-          content: Text(content, style: TextStyle(fontSize: 18)),
+          content: content,
           actions: [
             TextButton(
               onPressed: onNo, // لا للخروج

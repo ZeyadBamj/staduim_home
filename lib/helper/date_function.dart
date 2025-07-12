@@ -11,3 +11,7 @@ String formatDayName(DateTime date) {
   final dayName = DateFormat('EEEE').format(date);
   return dayName;
 }
+
+String formatTime(DateTime dateTime) {
+  return DateFormat.jm('ar').format(dateTime); // مثال: 2:35 م
+}

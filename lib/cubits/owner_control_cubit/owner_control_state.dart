@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:reservision_app/models/available_period.dart';
+import 'package:reservision_app/models/owner_available_period_model.dart';
 
 class OwnerControlState extends Equatable {
   final String? selectedSize;
-  final Map<String, List<AvailablePeriod>> periods;
+  final Map<String, List<OwnerAvailablePeriodModel>> periods;
   final Map<String, double> pricePerHour;
 
   const OwnerControlState({
@@ -13,14 +13,14 @@ class OwnerControlState extends Equatable {
   });
 
   factory OwnerControlState.initial() => const OwnerControlState(
-        selectedSize: null,
-        periods: {},
-        pricePerHour: {},
-      );
+    selectedSize: null,
+    periods: {},
+    pricePerHour: {},
+  );
 
   OwnerControlState copyWith({
     String? selectedSize,
-    Map<String, List<AvailablePeriod>>? periods,
+    Map<String, List<OwnerAvailablePeriodModel>>? periods,
     Map<String, double>? pricePerHour,
   }) {
     return OwnerControlState(

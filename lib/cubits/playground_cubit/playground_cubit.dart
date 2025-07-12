@@ -5,6 +5,7 @@ import 'playground_state.dart';
 
 class PlaygroundCubit extends Cubit<PlayGroundState> {
   PlaygroundCubit() : super(PlayGroundState());
+  final Map<PlayGroundModel, String> playgroundCityMap = {};
 
   final Map<String, List<PlayGroundModel>> playGrounds = {
     'عدن': [
@@ -202,18 +203,25 @@ class PlaygroundCubit extends Cubit<PlayGroundState> {
   }
 
   void searchAllCitiesPlaygrounds(String query) {
-    final all = getAllPlaygrounds();
+  playgroundCityMap.clear(); // امسح القديم قبل كل عملية بحث
 
-    final results =
-        all.where((playground) {
-          return playground.name.toLowerCase().contains(query.toLowerCase());
-        }).toList();
+  final results = <PlayGroundModel>[];
 
-    emit(
-      state.copyWith(
-        filteredPlaygrounds: results,
-        hasSearched: query.isNotEmpty,
-      ),
-    );
-  }
+  playGrounds.forEach((city, playgroundsList) {
+    for (final pg in playgroundsList) {
+      if (pg.name.toLowerCase().contains(query.toLowerCase()) ||
+          city.toLowerCase().contains(query.toLowerCase())) {
+        results.add(pg);
+        playgroundCityMap[pg] = city; // اربط كل ملعب بمدينة
+      }
+    }
+  });
+
+  emit(
+    state.copyWith(
+      filteredPlaygrounds: results,
+      hasSearched: query.isNotEmpty,
+    ),
+  );
+}
 }
