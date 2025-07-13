@@ -67,7 +67,7 @@ class OwnerNotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<OwnerNotificationCubit>();
     return Scaffold(
-      backgroundColor: kGreenColor.shade200,
+      backgroundColor: kBorderColor,
       appBar: AppBar(
         title: const Text('إشعارات الحجوزات'),
         centerTitle: true,
@@ -104,10 +104,6 @@ class OwnerNotificationsScreen extends StatelessWidget {
                 case BookingStatus.confirmed:
                   statusText = "تم التأكيد";
                   statusColor = kGreenColor;
-                  break;
-                case BookingStatus.rejected:
-                  statusText = "مرفوض";
-                  statusColor = kRedColor;
                   break;
                 default:
                   statusText = "غير مؤكدة";
@@ -162,13 +158,6 @@ class OwnerNotificationsScreen extends StatelessWidget {
                                   text: 'تأكيد',
                                 ),
                                 const SizedBox(width: 10),
-                                customElevatedButton(
-                                  cubit,
-                                  item,
-                                  bookingStatus: BookingStatus.rejected,
-                                  color: kRedColor,
-                                  text: 'رفض',
-                                ),
                               ],
                             ),
                         ],

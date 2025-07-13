@@ -20,7 +20,7 @@ Future<bool?> showConfirmDialog(
             FocusScope.of(context).unfocus();
           },
           child: AlertDialog(
-            backgroundColor: kGreenColor.shade300,
+            backgroundColor: kBorderColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),

@@ -17,7 +17,7 @@ class OwnerHome extends StatelessWidget {
     OwnerPlaygroundControlScreen(),
     OwnerDetailsScreen(),
     OwnerNotificationsScreen(),
-    ExitFingerScreen(),
+    // ExitFingerScreen(),
   ];
 
   @override

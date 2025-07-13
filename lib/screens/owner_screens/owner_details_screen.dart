@@ -122,7 +122,7 @@ class _OwnerDetailsScreenState extends State<OwnerDetailsScreen> {
         FocusScope.of(context).unfocus(); // ← يخفي لوحة المفاتيح ويزيل التركيز
       },
       child: Scaffold(
-        backgroundColor: kGreenColor.shade200,
+        backgroundColor: kBorderColor,
         appBar: AppBar(title: const Text("تفاصيل الملعب"), centerTitle: true),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -266,22 +266,24 @@ class _OwnerDetailsScreenState extends State<OwnerDetailsScreen> {
   }
 
   Widget _buildAddButtonContent(IconData icon, String label) {
-    return Container(
+    return SizedBox(
       height: mediaQueryHeight(context, height: 0.4),
       width: mediaQueryWidth(context, width: 0.4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: kPrimaryColor, width: 2),
-        color: kGreyColor.shade300,
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 30, color: kGreyColor),
-            const SizedBox(height: 8),
-            Text(label, style: const TextStyle(color: kGreyColor)),
-          ],
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: kPrimaryColor, width: 2),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 30, color: kGreyColor),
+              const SizedBox(height: 8),
+              Text(label, style: const TextStyle(color: kGreyColor)),
+            ],
+          ),
         ),
       ),
     );

@@ -75,7 +75,7 @@ class OwnerDrawer extends StatelessWidget {
               color: kRedColor,
               shadows: [kShadow(color: kRedColor, blurRadius: 5)],
             ),
-            title:  Text('تسجيل الخروج', style: ExitTextStyle.kExitText),
+            title: Text('تسجيل الخروج', style: ExitTextStyle.kExitText),
             onTap: () async {
               final shouldExit = await showConfirmDialog(
                 context,

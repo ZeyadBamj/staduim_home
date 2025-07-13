@@ -24,7 +24,7 @@ class OwnerPlaygroundControlScreen extends StatelessWidget {
         FocusScope.of(context).unfocus(); // ← يخفي لوحة المفاتيح ويزيل التركيز
       },
       child: Scaffold(
-        backgroundColor: kGreenColor.shade200,
+        backgroundColor: kBorderColor,
         appBar: const OwnerAppBar(title: 'ادارة الملعب'),
         body: BlocBuilder<OwnerControlCubit, OwnerControlState>(
           builder: (context, state) {

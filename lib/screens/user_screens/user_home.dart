@@ -17,7 +17,7 @@ class UserHome extends StatelessWidget {
     PlaygroundScreen(),
     ReservationScreen(),
     ProfileScreen(),
-    ExitFingerScreen(),
+    // ExitFingerScreen(),
   ];
 
   @override

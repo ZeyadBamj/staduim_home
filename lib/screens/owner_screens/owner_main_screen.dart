@@ -10,7 +10,7 @@ class OwnerMainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const OwnerDrawer(),
-      backgroundColor: kGreenColor.shade200,
+      backgroundColor: kBorderColor,
       appBar: const OwnerAppBar(title: 'الرئيسية'),
       body: const Center(
         child: Text(

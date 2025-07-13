@@ -9,7 +9,7 @@ class ReservisionButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories = ['القادمة', 'السابقة', 'ملغية', 'مرفوضة'];
+    final categories = ['القادمة', 'السابقة', 'ملغية'];
     final cubit = context.read<ReservisionCubit>();
 
     return BlocBuilder<ReservisionCubit, ReservisionState>(
@@ -26,7 +26,7 @@ class ReservisionButtons extends StatelessWidget {
                     final categoryName = state.selectedCategory == category;
                     return CustomElevatedButton(
                       name: category,
-                      padding: EdgeInsets.symmetric(horizontal: 18),
+                      padding: EdgeInsets.symmetric(horizontal: 30),
                       isSelected: categoryName,
                       onPressed: () {
                         cubit.selectCategory(category);

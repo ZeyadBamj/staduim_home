@@ -27,7 +27,7 @@ class OwnerInputStyle {
 class ShowConfirmDialogStyle {
   static const kYes = TextStyle(color: kRedColor, fontSize: 18);
 
-  static const kNo = TextStyle(color: kWhiteColor);
+  static const kNo = TextStyle(color: kBlackColor);
 
   static const kContent = TextStyle(fontSize: 18);
 }
