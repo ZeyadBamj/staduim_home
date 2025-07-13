@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
 
 class NotificationSettingsScreen extends StatefulWidget {
   @override

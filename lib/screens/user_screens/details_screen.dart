@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
 import 'package:reservision_app/constants/text_style_constants.dart';
-import 'package:reservision_app/cubits/main_cubit/main_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/main_cubit/main_cubit.dart';
 import 'package:reservision_app/helper/media_query.dart';
-import 'package:reservision_app/models/playground_model.dart';
+import 'package:reservision_app/models/user_model/playground_model.dart';
 import 'package:reservision_app/screens/user_screens/booking_screen.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_button.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_button.dart';
 
 class DetailsScreen extends StatefulWidget {
   final PlayGroundModel playground;
@@ -50,8 +50,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _carouselCubit,
+    return BlocProvider<MainCubit>(
+      create: (_) => _carouselCubit,
       child: Scaffold(
         appBar: AppBar(title: Text(widget.playground.name), centerTitle: true),
         body: Padding(
@@ -93,10 +93,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                   child: Image.asset(
                                     image,
-                                    width: mediaQueryWidth(
-                                      context,
-                                      width: 0.93,
-                                    ),
+                                    cacheWidth: 600, // لتقليل حجم الصورة
                                     fit: BoxFit.cover,
                                   ),
                                 ),

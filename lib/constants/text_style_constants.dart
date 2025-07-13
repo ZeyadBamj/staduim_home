@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
 
 class MainStyle {
   static const kMainText = TextStyle(
@@ -25,11 +25,7 @@ class OwnerInputStyle {
 }
 
 class ShowConfirmDialogStyle {
-  static const kYes = TextStyle(
-    color: kRedColor,
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-  );
+  static const kYes = TextStyle(color: kRedColor, fontSize: 18);
 
   static const kNo = TextStyle(color: kWhiteColor);
 

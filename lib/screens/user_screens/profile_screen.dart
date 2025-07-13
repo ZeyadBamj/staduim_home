@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/cubits/profile_cubit/profile_cubit.dart';
-import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/profile_cubit/profile_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/profile_cubit/login_status_cubit.dart';
 import 'package:reservision_app/screens/user_screens/login_form_screen.dart';
 import 'package:reservision_app/screens/user_screens/personal_profile_screen.dart';
 import 'package:reservision_app/screens/user_screens/register_form_screen.dart';
-import 'package:reservision_app/widgets/profile_widgets/auth_tab.dart';
-import 'package:reservision_app/widgets/common_widgets/my_drawer.dart';
+import 'package:reservision_app/widgets/user_widgets/profile_widgets/auth_tab.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/my_drawer.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

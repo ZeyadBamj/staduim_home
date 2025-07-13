@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/cubits/notification_cubit/user_notification_cubit.dart';
-import 'package:reservision_app/models/user_notification_model.dart';
+import 'package:reservision_app/cubits/common/notification_cubit/user_notification_cubit.dart';
+import 'package:reservision_app/models/user_model/user_notification_model.dart';
 import 'package:reservision_app/screens/user_screens/notification_setting_screen.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_button.dart';
-import 'package:reservision_app/widgets/notification_widget/notification_tile.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_button.dart';
+import 'package:reservision_app/widgets/user_widgets/notification_widget/notification_tile.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});

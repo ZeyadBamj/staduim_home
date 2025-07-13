@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:reservision_app/constants/constants.dart';
-import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
-import 'package:reservision_app/cubits/playground_cubit/playground_cubit.dart';
-import 'package:reservision_app/cubits/home_cubit/home_cubit.dart';
-import 'package:reservision_app/cubits/notification_cubit/user_notification_cubit.dart';
-import 'package:reservision_app/cubits/notification_cubit/owner_notification_cubit.dart';
-import 'package:reservision_app/cubits/owner_control_cubit/owner_control_cubit.dart';
-import 'package:reservision_app/cubits/personal_profile_cubit/personal_profile_cubit.dart';
-import 'package:reservision_app/cubits/reservision_cubit/reservision_cubit.dart';
-import 'package:reservision_app/screens/common_screens/contact_with_us_screen.dart';
-import 'package:reservision_app/screens/user_screens/home_screen.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
+import 'package:reservision_app/cubits/user_cubits/booking_cubit/booking_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/playground_cubit/playground_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/home_cubit/home_cubit.dart';
+import 'package:reservision_app/cubits/common/notification_cubit/owner_notification_cubit.dart';
+import 'package:reservision_app/cubits/owner_cubits/owner_control_cubit/owner_control_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/personal_profile_cubit/personal_profile_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/reservision_cubit/reservision_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/screens/user_screens/notification_screen.dart';
-import 'package:reservision_app/screens/common_screens/out_login_screen.dart';
-import 'package:reservision_app/screens/owner_screens/owner_control_screen.dart';
+import 'package:reservision_app/screens/common/out_login_screen.dart';
 import 'package:reservision_app/screens/owner_screens/owner_home.dart';
-import 'package:reservision_app/screens/owner_screens/owner_notification_screen.dart';
-import 'package:reservision_app/screens/user_screens/personal_profile_screen.dart';
-import 'package:reservision_app/widgets/profile_widgets/auth_gate.dart';
-import 'package:reservision_app/widgets/reservision_widgets/mock_bookings.dart';
+import 'package:reservision_app/screens/user_screens/user_home.dart';
+import 'package:reservision_app/widgets/user_widgets/reservision_widgets/mock_bookings.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
@@ -59,7 +52,6 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             color: kPrimaryColor,
             elevation: 0,
-            // iconTheme: IconThemeData(color: kWhiteColor),
             titleTextStyle: TextStyle(
               color: kWhiteColor,
               fontSize: 20,
@@ -80,7 +72,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const OwnerHome(),
+
+        home: const OutLoginScreen(),
       ),
     );
   }

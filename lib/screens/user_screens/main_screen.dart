@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:reservision_app/constants/images_constants.dart';
 import 'package:reservision_app/constants/text_style_constants.dart';
-import 'package:reservision_app/cubits/home_cubit/home_cubit.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_app_bar.dart';
-import 'package:reservision_app/widgets/main_widgets/category_card.dart';
-import 'package:reservision_app/widgets/common_widgets/my_drawer.dart';
-import 'package:reservision_app/widgets/main_widgets/field_search_bar.dart';
-import 'package:reservision_app/widgets/main_widgets/upcoming_booking_carousel.dart';
+import 'package:reservision_app/cubits/user_cubits/home_cubit/home_cubit.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_app_bar.dart';
+import 'package:reservision_app/widgets/user_widgets/main_widgets/category_card.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/my_drawer.dart';
+import 'package:reservision_app/widgets/user_widgets/main_widgets/field_search_bar.dart';
+import 'package:reservision_app/widgets/user_widgets/main_widgets/upcoming_booking_carousel.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -57,24 +57,24 @@ class _MainScreenState extends State<MainScreen> {
                   Text('Welcome', style: MainStyle.kGreetingText),
                 ],
               ),
-      
+
               const SizedBox(height: 5),
               const FieldSearchBar(),
-      
+
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image.asset(kFieldImage, height: 60),
+                  Image.asset(kFieldIconImage, height: 60),
                   const Text('الملاعب', style: MainStyle.kMainText),
                 ],
               ),
               const SizedBox(height: 5),
-      
+
               const UpcomingBookingsCarousel(),
-      
+
               const SizedBox(height: 20),
-      
+
               Row(
                 children: [
                   const SizedBox(width: 15),

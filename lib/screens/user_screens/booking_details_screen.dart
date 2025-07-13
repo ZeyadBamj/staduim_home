@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
 import 'package:reservision_app/constants/text_style_constants.dart';
-import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
-import 'package:reservision_app/cubits/booking_cubit/booking_state.dart';
-import 'package:reservision_app/cubits/reservision_cubit/reservision_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/booking_cubit/booking_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/booking_cubit/booking_state.dart';
+import 'package:reservision_app/cubits/user_cubits/reservision_cubit/reservision_cubit.dart';
 import 'package:reservision_app/helper/date_function.dart';
 import 'package:reservision_app/helper/show_confirm_dialog.dart';
 import 'package:reservision_app/helper/media_query.dart';
-import 'package:reservision_app/models/reservision_model.dart';
+import 'package:reservision_app/models/user_model/reservision_model.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   final ReservisionModel booking;
@@ -121,11 +121,15 @@ class BookingDetailsScreen extends StatelessWidget {
                         onNo: () => Navigator.pop(context),
                         yesText: 'تأكيد الإلغاء',
                         onYes: () {
+                          final messenger = ScaffoldMessenger.of(context);
                           final reason = reasonController.text.trim();
                           if (reason.isNotEmpty) {
                             cubit.cancelBooking(booking, reason);
                             Navigator.pop(context);
                             Navigator.pop(context);
+                            messenger.showSnackBar(
+                              const SnackBar(content: Text('تم إلغاء حجزك')),
+                            );
                           }
                         },
                       );

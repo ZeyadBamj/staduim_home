@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
 import 'package:reservision_app/constants/text_style_constants.dart';
-import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
-import 'package:reservision_app/cubits/personal_profile_cubit/personal_profile_cubit.dart';
-import 'package:reservision_app/cubits/personal_profile_cubit/personal_profile_state.dart';
-import 'package:reservision_app/widgets/common_widgets/my_drawer.dart';
-import 'package:reservision_app/widgets/personal_widgets/editable_list_tile.dart';
-import 'package:reservision_app/widgets/personal_widgets/edit_field_function.dart';
-import 'package:reservision_app/widgets/personal_widgets/pick_image_function.dart';
-import 'package:reservision_app/widgets/personal_widgets/show_full_image_function.dart';
-import 'package:reservision_app/widgets/personal_widgets/profile_image_widget.dart';
+import 'package:reservision_app/cubits/user_cubits/profile_cubit/login_status_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/personal_profile_cubit/personal_profile_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/personal_profile_cubit/personal_profile_state.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/my_drawer.dart';
+import 'package:reservision_app/widgets/user_widgets/personal_widgets/editable_list_tile.dart';
+import 'package:reservision_app/widgets/user_widgets/personal_widgets/edit_field_function.dart';
+import 'package:reservision_app/widgets/user_widgets/personal_widgets/pick_image_function.dart';
+import 'package:reservision_app/widgets/user_widgets/personal_widgets/show_full_image_function.dart';
+import 'package:reservision_app/widgets/user_widgets/personal_widgets/profile_image_widget.dart';
 
 class PersonalProfileScreen extends StatelessWidget {
   const PersonalProfileScreen({super.key});

@@ -86,9 +86,9 @@ flutter:
     - family: Cairo
       fonts:
         - asset: assets/fonts/Cairo-Medium.ttf
-    - family: Pacifico
+    - family: Tajawal
       fonts:
-        - asset: assets/fonts/Pacifico-Regular.ttf
+        - asset: assets/fonts/Tajawal-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

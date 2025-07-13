@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/constants.dart';
-import 'package:reservision_app/cubits/playground_cubit/playground_cubit.dart';
-import 'package:reservision_app/cubits/playground_cubit/playground_state.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
+import 'package:reservision_app/cubits/user_cubits/playground_cubit/playground_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/playground_cubit/playground_state.dart';
 import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/screens/user_screens/details_screen.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_app_bar.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_elevated_button.dart';
-import 'package:reservision_app/widgets/common_widgets/my_drawer.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_app_bar.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_elevated_button.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/my_drawer.dart';
 
 class PlaygroundScreen extends StatelessWidget {
   const PlaygroundScreen({super.key});

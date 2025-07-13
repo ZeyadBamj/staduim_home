@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/constants.dart';
-import 'package:reservision_app/cubits/profile_cubit/login_status_cubit.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_button.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_text_field.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
+import 'package:reservision_app/cubits/user_cubits/profile_cubit/login_status_cubit.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_button.dart';
+import 'package:reservision_app/widgets/common/custom_text_field.dart';
 
 class RegisterFormScreen extends StatelessWidget {
   const RegisterFormScreen({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:reservision_app/constants/constants.dart';
-import 'package:reservision_app/cubits/home_cubit/home_cubit.dart';
-import 'package:reservision_app/screens/common_screens/exit_finger.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
+import 'package:reservision_app/cubits/user_cubits/home_cubit/home_cubit.dart';
+import 'package:reservision_app/screens/common/exit_finger.dart';
 import 'package:reservision_app/screens/owner_screens/owner_control_screen.dart';
 import 'package:reservision_app/screens/owner_screens/owner_details_screen.dart';
 import 'package:reservision_app/screens/owner_screens/owner_main_screen.dart';

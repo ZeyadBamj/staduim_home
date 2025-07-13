@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reservision_app/constants/constants.dart';
+import 'package:reservision_app/constants/colors_constants.dart';
 import 'package:reservision_app/constants/images_constants.dart';
-import 'package:reservision_app/cubits/booking_cubit/booking_cubit.dart';
-import 'package:reservision_app/cubits/booking_cubit/booking_state.dart';
-import 'package:reservision_app/cubits/home_cubit/home_cubit.dart';
-import 'package:reservision_app/cubits/reservision_cubit/reservision_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/booking_cubit/booking_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/booking_cubit/booking_state.dart';
+import 'package:reservision_app/cubits/user_cubits/home_cubit/home_cubit.dart';
+import 'package:reservision_app/cubits/user_cubits/reservision_cubit/reservision_cubit.dart';
 import 'package:reservision_app/helper/date_function.dart';
 import 'package:reservision_app/helper/media_query.dart';
 import 'package:reservision_app/helper/showSuccessDialog.dart';
-import 'package:reservision_app/models/reservision_model.dart';
-import 'package:reservision_app/widgets/booking_widgets/booking_card.dart';
-import 'package:reservision_app/widgets/booking_widgets/booking_confirmation_section.dart';
-import 'package:reservision_app/widgets/booking_widgets/date_selector_widget.dart';
-import 'package:reservision_app/widgets/booking_widgets/field_size_selector.dart';
-import 'package:reservision_app/widgets/booking_widgets/period_selector.dart';
-import 'package:reservision_app/widgets/common_widgets/custom_button.dart';
+import 'package:reservision_app/models/user_model/reservision_model.dart';
+import 'package:reservision_app/widgets/user_widgets/booking_widgets/booking_card.dart';
+import 'package:reservision_app/widgets/user_widgets/booking_widgets/booking_confirmation_section.dart';
+import 'package:reservision_app/widgets/user_widgets/booking_widgets/date_selector_widget.dart';
+import 'package:reservision_app/widgets/user_widgets/booking_widgets/field_size_selector.dart';
+import 'package:reservision_app/widgets/user_widgets/booking_widgets/period_selector.dart';
+import 'package:reservision_app/widgets/user_widgets/common/common/custom_button.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -48,7 +48,10 @@ class _BookingScreenState extends State<BookingScreen> {
       body: BlocBuilder<BookingCubit, BookingState>(
         builder: (context, state) {
           // تحديث قيمة الـ TextEditingController من حالة Cubit
-          _messageController.text = state.message;
+          if (_messageController.text != state.message) {
+            _messageController.text = state.message;
+          }
+
           return GestureDetector(
             behavior: HitTestBehavior.opaque, // مهم لو تستخدم ScrollView
             onTap: () {
